@@ -36,7 +36,7 @@ You can use other _Branches_ as `main`, they will not be considered for scoring.
 We upload new exercises to the _repository_ weekly, so you should always update your _forked_ _repository_. Using `git merge` this is easy: you just need to add the exercise _repository_ as an external source ("_remote_") once:
 
 ```
-git remote add tutorial git@gitlab.inf.uni-konstanz.de:visual-computing/lecture-computer-graphics/cg-exercise-2022.git
+git remote add tutorial git@gitlab.inf.uni-konstanz.de:visual-computing/lecture-computer-graphics/cg-exercise-2023.git
 ```
 
 You now have two "_remote_" _repositories_. Your own is called `origin`, while the _remote_ of the exercise is called `tutorial`. You should _push_ all your submissions to `origin`, as this is your private copy of the exercise _repository_. From `tutorial` you only need to read to copy into your local copy the lecture material and the exercises.
