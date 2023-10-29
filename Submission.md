@@ -14,7 +14,7 @@ Clone the _Repository_ using _Git_ to get a local copy. **CAUTION**: Do not use 
 5. add your group partner as maintainer to the repository.
 
 
-## 2. submit duties
+## 2. how to submit
 After completing the assignments, you may submit as follows:
 * _commit_ **AND** _push_ your changes. Make sure your code is compiled and understandable. Please keep your code understandable and comment it in detail.
 * Submissions are only searched on the `main`-_Branch_.
