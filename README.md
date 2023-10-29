@@ -1,4 +1,4 @@
-#Computer Graphics
+# Computer Graphics
 Here you can find all important information about the lecture and exercise of the course _Computer Graphics_.
 
 ## Lecture
@@ -55,4 +55,4 @@ Exercises will be distributed and handed in via the university's Gitlab. You can
 
 ## Questions?
 
-Please write us an email: [Patrick Paetzold](patrick.paetzold@uni-konstanz.de) or [Michael Stroh](michael.stroh@uni-konstanz.de)
+Please write us an email: [Patrick Paetzold](mailto:patrick.paetzold@uni-konstanz.de) or [Michael Stroh](mailto:michael.stroh@uni-konstanz.de)
