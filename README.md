@@ -25,8 +25,8 @@ It is necessary to have a computer that can run __at least__ a current browser w
 
 
 
-### Folien
-Die Folien der Vorlesung und Übung könnt ihr unter folgendem Link nach vorherigem Login herunterladen:
+### Slides
+The lecture and turorial slides are available at after login:
 https://www.cgmi.uni-konstanz.de/lehre/wintersemester-23-24/computer-graphics-conventional-and-neural-methods/
 
 ## Exercise
