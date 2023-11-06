@@ -35,8 +35,8 @@ $L_s(x, \omega) = E(x, \omega) + \int_\Omega f_r(x,\omega^\prime, \omega) L_i(x,
 Explain in a few words the meaning of the following variables. (6 points)
 
 1. $L_s(x, \omega)$
-2. $`E(x, \omega)$
-3. $\Omega`$
+2. $E(x, \omega)$
+3. $\Omega$
 4. $f_r(x,\omega^\prime, \omega)$
 5. $L_i(x, \omega^\prime)$
 6. $\cos (\theta)$
