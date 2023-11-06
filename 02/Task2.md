@@ -1,5 +1,9 @@
 # Exercise 02 <!-- omit in toc -->
 
+## Submission Deadline 
+Monday 13.11.2023 10am
+
+
 ## 1. Theoretical
 
 **Please** write the solution in `solution.md`. You can write math expressions in LaTeX syntax in Markdown by writing them between the dollar signs `$` or within a code block with the language declared as `math`. These are then rendered in _Gitlab_ with `KaTeX`:
