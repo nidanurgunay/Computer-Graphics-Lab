@@ -1,82 +1,82 @@
-    "use strict";
+"use strict";
 
-    let canvas;
-    let gl;
+let canvas;
+let gl;
 
-    const positions = [-0.5, -0.5, 0, 0.5, -0.5, 0, 0.0, 0.5, 0];
+const positions = [-0.5, -0.5, 0, 0.5, -0.5, 0, 0.0, 0.5, 0];
 
-    const colors = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+const colors = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
-    let sizeLoc;
-    let u_size = 0.5;
+let sizeLoc;
+let u_size = 0.5;
 
-    window.onload = function init() {
-    canvas = document.getElementById("gl-canvas");
+window.onload = function init() {
+  canvas = document.getElementById("gl-canvas");
 
-    gl = canvas.getContext("webgl2");
-    if (!gl) alert("WebGL 2.0 isn't available");
+  gl = canvas.getContext("webgl2");
+  if (!gl) alert("WebGL 2.0 isn't available");
 
-    document.getElementById("size_slider").onchange = function (event) {
-        u_size = parseFloat(event.target.value);
-    };
+  document.getElementById("size_slider").onchange = function (event) {
+    u_size = parseFloat(event.target.value);
+  };
 
-    console.log("usize", u_size);
-    //
-    //  Configure WebGL
-    //
 
-    //Specify the size of the viewport
-    gl.viewport(0, 0, canvas.width, canvas.height);
+  //
+  //  Configure WebGL
+  //
 
-    //Specify the background color
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  //Specify the size of the viewport
+  gl.viewport(0, 0, canvas.width, canvas.height);
 
-    //Load and compile shaders
-    let program = initShaders(gl, "vertex-shader", "fragment-shader");
-    gl.useProgram(program);
+  //Specify the background color
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-    //Create buffer for vertices
-    let positionBuffer = gl.createBuffer();
+  //Load and compile shaders
+  let program = initShaders(gl, "vertex-shader", "fragment-shader");
+  gl.useProgram(program);
 
-    //bind a given WebGLBuffer to a target
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+  //Create buffer for vertices
+  let positionBuffer = gl.createBuffer();
 
-    //Pass the vertices to the buffer
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+  //bind a given WebGLBuffer to a target
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
-    //Get location of attribute in shader program
-    let positionLoc = gl.getAttribLocation(program, "in_position");
+  //Pass the vertices to the buffer
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
-    //Specify the number of components in a vertex attribute
-    gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(positionLoc);
+  //Get location of attribute in shader program
+  let positionLoc = gl.getAttribLocation(program, "in_position");
 
-    //Create buffer for vertices
-    let colorBuffer = gl.createBuffer();
+  //Specify the number of components in a vertex attribute
+  gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(positionLoc);
 
-    //bind a given WebGLBuffer to a target
-    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+  //Create buffer for vertices
+  let colorBuffer = gl.createBuffer();
 
-    //Pass the vertices to the buffer
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+  //bind a given WebGLBuffer to a target
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
 
-    //Get location of attribute in shader program
-    let colorLoc = gl.getAttribLocation(program, "in_color");
+  //Pass the vertices to the buffer
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
 
-    //Specify the number of components in a vertex attribute
-    gl.vertexAttribPointer(colorLoc, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(colorLoc);
+  //Get location of attribute in shader program
+  let colorLoc = gl.getAttribLocation(program, "in_color");
 
-    //TODO: find the uniform "u_size" in the shader
-    gl.getUniformLocation(program, "u_size");
+  //Specify the number of components in a vertex attribute
+  gl.vertexAttribPointer(colorLoc, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(colorLoc);
 
-    render();
-    };
+  //TODO: find the uniform "u_size" in the shader
+  sizeLoc = gl.getUniformLocation(program, "u_size");
 
-    function render() {
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    //TODO: pass the value sizeLoc to the uniform u_size
-    gl.uniform1f(sizeLoc, u_size);
-    gl.drawArrays(gl.TRIANGLES, 0, positions.length / 3);
-    requestAnimationFrame(render);
-    }
+  render();
+};
+
+function render() {
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  //TODO: pass the value sizeLoc to the uniform u_size
+  gl.uniform1f(sizeLoc, u_size);
+  gl.drawArrays(gl.TRIANGLES, 0, positions.length / 3);
+  requestAnimationFrame(render);
+}
