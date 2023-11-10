@@ -23,6 +23,7 @@ window.onload = function init() {
 
     document.getElementById("size_slider").onchange = function (event) {
         u_size = parseFloat(event.target.value);
+        console.log(u_size)
     };
 
 
@@ -79,9 +80,8 @@ window.onload = function init() {
     gl.enableVertexAttribArray(colorLoc);
 
     //TODO: find the uniform "u_size" in the shader
-
-
-
+    sizeLoc = gl.getUniformLocation(program, 'u_size')
+    console.log(sizeLoc)
     render();
 };
 
@@ -91,6 +91,8 @@ function render() {
 
     //TODO: pass the value sizeLoc to the uniform u_size
 
+    gl.uniform1f(sizeLoc,u_size);
+    //console.log(sizeLoc);
     gl.drawArrays(gl.TRIANGLES, 0, positions.length / 3);
     requestAnimationFrame(render);
 }
