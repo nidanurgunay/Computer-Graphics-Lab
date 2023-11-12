@@ -9,8 +9,8 @@
     <script id="vertex-shader" type="x-shader/x-vertex">
 #version 300 es
 
-//TODO: change u_size to a uniform and remove the assignment
-float u_size = 0.5;
+//TODO: change u_size to a uniform and remove the assignmentu
+uniform float u_size ;
 
 in vec3 in_position;
 in vec3 in_color;
@@ -45,7 +45,7 @@ void main()
 
 <body>
     <label for="size_slider">Size:</label>
-    <input type="range" value="0.5" id="size_slider" max="1" min="0.1" step="0.01"/>
+    <input type="range" value="0.5" id="size_slider" max="1" min="0.1" step="0.01" />
     <br>
     <canvas id="gl-canvas" width="512" height="512">
         Oops ... your browser doesn't support the HTML5 canvas element
