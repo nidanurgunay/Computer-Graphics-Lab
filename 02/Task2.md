@@ -1,5 +1,9 @@
 # Exercise 02 <!-- omit in toc -->
 
+## Submission Deadline 
+Monday 13.11.2023 10am
+
+
 ## 1. Theoretical
 
 **Please** write the solution in `solution.md`. You can write math expressions in LaTeX syntax in Markdown by writing them between the dollar signs `$` or within a code block with the language declared as `math`. These are then rendered in _Gitlab_ with `KaTeX`:
@@ -35,8 +39,8 @@ $L_s(x, \omega) = E(x, \omega) + \int_\Omega f_r(x,\omega^\prime, \omega) L_i(x,
 Explain in a few words the meaning of the following variables. (6 points)
 
 1. $L_s(x, \omega)$
-2. $`E(x, \omega)$
-3. $\Omega`$
+2. $E(x, \omega)$
+3. $\Omega$
 4. $f_r(x,\omega^\prime, \omega)$
 5. $L_i(x, \omega^\prime)$
 6. $\cos (\theta)$
