@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='03_main.js'></script>
+</head>
+<body>
+    <div>
+    <div style="float: left;">
+        <h2>Moiré Artifact</h2>
+    <canvas id="canvas_artifact" height="500" width="500"></canvas>
+    <br>
+    <button onclick="download('canvas_artifact')" style="float: left;">Downlaod PNG</button>
+</div>
+<div style="float: left; padding-left: 20px;">
+    <h2>Jitter</h2>
+    <canvas id="canvas_jitter" height="500" width="500"></canvas>
+    <br>
+    <button onclick="download('canvas_jitter')" style="float: left;">Downlaod PNG</button>
+    <label for="myRange" style="padding: 5px;">Jitter sthrength:</label>
+    <input type="range" min="0" max="1" value="0.5" step="0.01" id="myRange" onchange="updateSlider(this.value)">
+</div>
+</div>
+</body>
+</html>
