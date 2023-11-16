@@ -24,10 +24,14 @@ Group: *Nidanur Günay, Yu zeyuan*
 of individual rays of the light. 
 2. Ray tracing is particularly good at specular reflections and refraction such as graphics which have glasses and mirros. On the other hand, radiocity is effective when graphic model requires diffuse reflections and realisitic shadows such as architectural programs.
 <<<<<<< HEAD
+<<<<<<< HEAD
 3. Ray tracing handles all types of light transport except diffuse reflection but radiosity cares indirect diffuse lights.
 =======
 3. Ray tracing handles all types of light transport but radiosity cares indirect diffuse lights.
 >>>>>>> e055820 (feat(solution.md): task 1 solution)
+=======
+3. Ray tracing handles all types of light transport but radiosity cares indirect diffuse lights.
+>>>>>>> e055820c09260152c3e37a5d53fcdefbae8da016
 
 
 
