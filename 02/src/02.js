@@ -1,24 +1,19 @@
-"use strict";
+    "use strict";
 
-let canvas;
-let gl;
+    let canvas;
+    let gl;
 
-const positions = [-0.5, -0.5, 0,
-    0.5, -0.5, 0,
-    0.0, 0.5, 0];
+    const positions = [-0.5, -0.5, 0, 0.5, -0.5, 0, 0.0, 0.5, 0];
 
-const colors = [1, 0, 0,
-            0, 1, 0,
-            0, 0, 1];
+    const colors = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
-let sizeLoc
-let u_size = 0.5
+    let sizeLoc;
+    let u_size = 0.5;
 
-
-window.onload = function init() {
+    window.onload = function init() {
     canvas = document.getElementById("gl-canvas");
 
-    gl = canvas.getContext('webgl2');
+    gl = canvas.getContext("webgl2");
     if (!gl) alert("WebGL 2.0 isn't available");
 
     document.getElementById("size_slider").onchange = function (event) {
@@ -26,7 +21,7 @@ window.onload = function init() {
         console.log(u_size)
     };
 
-
+    console.log("usize", u_size);
     //
     //  Configure WebGL
     //
@@ -37,13 +32,9 @@ window.onload = function init() {
     //Specify the background color
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-
-
     //Load and compile shaders
     let program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
-
-
 
     //Create buffer for vertices
     let positionBuffer = gl.createBuffer();
@@ -60,8 +51,6 @@ window.onload = function init() {
     //Specify the number of components in a vertex attribute
     gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(positionLoc);
-
-
 
     //Create buffer for vertices
     let colorBuffer = gl.createBuffer();
@@ -83,16 +72,14 @@ window.onload = function init() {
     sizeLoc = gl.getUniformLocation(program, 'u_size')
     console.log(sizeLoc)
     render();
-};
+    };
 
-
-function render() {
+    function render() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
     //TODO: pass the value sizeLoc to the uniform u_size
 
     gl.uniform1f(sizeLoc,u_size);
     //console.log(sizeLoc);
     gl.drawArrays(gl.TRIANGLES, 0, positions.length / 3);
     requestAnimationFrame(render);
-}
+    }
