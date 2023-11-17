@@ -33,33 +33,28 @@ function draw(canvas, jitter_strength) {
       //x and y coordinate scaled to range [start, end] to the center of a sampling cell
       const sx = start + unit * x + unit / 2;
       const sy = start + unit * y + unit / 2;
-
       //TODO: generate jitter in the x and y direction in the range [-jitter_strength * unit  / 2, jitter_strength * unit / 2] using a random value generated using the Math library
-      const jitter_x = Math.random(
-        (-jitter_strength * unit) / 2,
-        (jitter_strength * unit) / 2
-      );
-      const jitter_y = Math.random(
-        (-jitter_strength * unit) / 2,
-        (jitter_strength * unit) / 2
-      );
-      console.log("sx", sx);
-      console.log("sy", sy);
-
-      console.log("jitter_x", jitter_x);
-      console.log("jitter_y", jitter_y);
+      const jitter_x =
+        Math.random() *
+          ((jitter_strength * unit) / 2 + (jitter_strength * unit) / 2) -
+        (jitter_strength * unit) / 2;
+      const jitter_y =
+        Math.random() *
+          ((jitter_strength * unit) / 2 + (jitter_strength * unit) / 2) -
+        (jitter_strength * unit) / 2;
 
       //TODO: add jitter to sx and sy
-      //   sx += jitter_x;
-      //   sy += jitter_y;
+      const jittered_sx = sx + jitter_x;
+      const jittered_sy = sy + jitter_y;
 
       //TODO: get the value of the sineFunction you implemented below at position sx and sy including the jitter you added above
-      const sinValue = sineFunction(sx, sy);
+      const sinValue = sineFunction(jittered_sx, jittered_sy);
+      //   console.log("sinValue", sinValue);
 
       //TODO: normalize the output of sineFunction from range [-1,1] to [0,255]
       const normalizedValue = (sinValue + 1) * 127.5;
-      //TODO: set the pixel at position x, y to the normalized value
 
+      //TODO: set the pixel at position x, y to the normalized value
       //This are just arbitary values to show something. Please change.
       setPixel(
         imageData,
