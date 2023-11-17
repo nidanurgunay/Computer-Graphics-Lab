@@ -10,14 +10,22 @@
 #version 300 es
 
 in vec3 in_position;
+<<<<<<< HEAD
 in vec3 in_color;
+=======
+in vec3 in_color; //added variable
+>>>>>>> ac1aa327d02f36d9546e050c856eb2a7b159b67a
 out vec4 vColor;
 
 void main()
 {
     gl_Position = vec4(in_position, 1.0);
 
+<<<<<<< HEAD
     vColor = vec4(in_color, 1.0);
+=======
+    vColor = vec4(in_color, 1.0); //same as postion
+>>>>>>> ac1aa327d02f36d9546e050c856eb2a7b159b67a
 }
 </script>
 
