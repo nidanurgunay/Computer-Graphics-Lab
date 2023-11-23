@@ -105,11 +105,12 @@ function render() {
 }
 
 //download the canvas as PNG
-function download(canvas_name) {
+/*function download(canvas_name) {
     //https://gist.github.com/Kaundur/2aca9a9edb003555f44195e826af4084
 
     // Get the canvas
     let canvas = document.getElementById(canvas_name);
+
     // Convert the canvas to data
     var image = canvas.toDataURL();
     // Create a link
@@ -120,4 +121,4 @@ function download(canvas_name) {
     aDownloadLink.href = image;
     // Get the code to click the download link
     aDownloadLink.click();
-}
+}*/
