@@ -4,7 +4,7 @@ var gl;
 // var positions;
 
 var numTimesToSubdivide = 0;
-
+var program;
 var bufferId;
 var points = [];
 var colors = [
@@ -40,7 +40,7 @@ function init() {
 
   //  Load shaders and initialize attribute buffers
 
-  var program = initShaders(gl, "vertex-shader", "fragment-shader");
+  program = initShaders(gl, "vertex-shader", "fragment-shader");
   gl.useProgram(program);
 
   // Load the data into the GPU
@@ -51,13 +51,7 @@ function init() {
 
   let cBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
-
-  // Associate out shader variables with our data buffer
-
-  var positionLoc = gl.getAttribLocation(program, "aPosition");
-  gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
-  gl.enableVertexAttribArray(positionLoc);
+  gl.bufferData(gl.ARRAY_BUFFER, 8 * Math.pow(3, 6), gl.STATIC_DRAW);
 
   let vColor = gl.getAttribLocation(program, "vColor");
   gl.vertexAttribPointer(vColor, 3, gl.FLOAT, false, 0, 0);
@@ -65,11 +59,16 @@ function init() {
 
   let pointBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, pointBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, 8 * Math.pow(3, 6), gl.STATIC_DRAW);
 
   let vPosition = gl.getAttribLocation(program, "vPosition");
   gl.vertexAttribPointer(vPosition, 3, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vPosition);
+  // Associate out shader variables with our data buffer
+
+  var positionLoc = gl.getAttribLocation(program, "aPosition");
+  gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(positionLoc);
 
   document.getElementById("slider").onchange = function (event) {
     numTimesToSubdivide = parseInt(event.target.value);
@@ -78,35 +77,6 @@ function init() {
 
   render();
 }
-
-// function triangle(a, b, c) {
-//     positions.push(a, b, c);
-// }
-
-// function divideTriangle(a, b, c, count) {
-
-//     // check for end of recursion
-
-//     if (count == 0) {
-//         triangle(a, b, c);
-//     }
-//     else {
-
-//         //bisect the sides
-
-//         var ab = mix(a, b, 0.5);
-//         var ac = mix(a, c, 0.5);
-//         var bc = mix(b, c, 0.5);
-
-//         --count;
-
-//         // three new triangles
-
-//         divideTriangle(a, ab, ac, count);
-//         divideTriangle(c, ac, bc, count);
-//         divideTriangle(b, bc, ab, count);
-//     }
-// }
 
 function triangle(a, b, c, color) {
   colors.push(baseColors[color]);
@@ -160,6 +130,7 @@ function render() {
     vec3(0.8165, -0.4714, 0.3333),
   ];
   points = [];
+  colors = [];
   // divideTriangle(vertices[0], vertices[1], vertices[2],
   //     numTimesToSubdivide);
   divideTetra(
@@ -169,7 +140,10 @@ function render() {
     vertices[3],
     numTimesToSubdivide
   );
+
   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
+  gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(colors));
+
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, points.length);
   points = [];
