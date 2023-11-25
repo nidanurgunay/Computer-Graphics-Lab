@@ -6,13 +6,18 @@ var gl;
 var numTimesToSubdivide = 0;
 
 var bufferId;
-var points;
-var colors = [];
-let baseColors = [
+var points = [];
+var colors = [
   [1.0, 0.0, 0.0],
   [0.0, 1.0, 0.0],
   [0.0, 0.0, 1.0],
   [1.0, 0.0, 1.0],
+];
+let baseColors = [
+  [1.0, 0.0, 0.0],
+  [0.0, 1.0, 0.0],
+  [0.0, 0.0, 1.0],
+  [0.0, 0.0, 0.0],
 ];
 
 function init() {
@@ -46,7 +51,7 @@ function init() {
 
   let cBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, 8 * Math.pow(3, 6), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
 
   // Associate out shader variables with our data buffer
 
@@ -58,9 +63,9 @@ function init() {
   gl.vertexAttribPointer(vColor, 3, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vColor);
 
-  //   let pointBuffer = gl.createBuffer();
-  //   gl.bindBuffer(gl.ARRAY_BUFFER, pointBuffer);
-  //   gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
+  let pointBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, pointBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
 
   let vPosition = gl.getAttribLocation(program, "vPosition");
   gl.vertexAttribPointer(vPosition, 3, gl.FLOAT, false, 0, 0);
