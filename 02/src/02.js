@@ -3,7 +3,9 @@
 let canvas;
 let gl;
 
-const positions = [-0.5, -0.5, 0, 0.5, -0.5, 0, 0.0, 0.5, 0];
+const positions = [-0.5, -0.5, 0, 
+                    0.5, -0.5, 0, 
+                    0.0, 0.5, 0];
 
 const colors = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
