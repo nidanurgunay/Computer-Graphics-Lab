@@ -8,7 +8,7 @@
 <script id="vertex-shader" type="x-shader/x-vertex">
 #version 300 es
 in vec4 aPosition;
-
+in vec3 aColor;
 void
 main()
 {
@@ -19,7 +19,6 @@ main()
 <script id="fragment-shader" type="x-shader/x-fragment">
 #version 300 es
 precision mediump float;
-
 out vec4 fColor;
 
 void
