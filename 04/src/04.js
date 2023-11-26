@@ -14,6 +14,12 @@ var baseColors = [
   vec3(0.0, 0.0, 1.0),
   vec3(0.0, 0.0, 0.0),
 ];
+let baseColors = [
+  [1.0, 0.0, 0.0],
+  [0.0, 1.0, 0.0],
+  [0.0, 0.0, 1.0],
+  [0.0, 0.0, 0.0],
+];
 
 function init() {
   canvas = document.getElementById("gl-canvas");
@@ -146,28 +152,16 @@ function render() {
   //     vec2(0, 1),
   //     vec2(1, -1)
   // ];
-<<<<<<< HEAD
   point = [];
   colors = [];
   console.log("colors at render", colors);
   console.log("points at render", points);
-=======
-  console.log("colors at render", colors);
-  console.log("points at render", points);
-
->>>>>>> 87785bc (feat: smt visible)
   var vertices = [
     vec3(0.0, 0.0, -1.0),
     vec3(0.0, 0.9428, 0.3333),
     vec3(-0.8165, -0.4714, 0.3333),
     vec3(0.8165, -0.4714, 0.3333),
   ];
-<<<<<<< HEAD
-=======
-  points = [];
-  // divideTriangle(vertices[0], vertices[1], vertices[2],
-  //     numTimesToSubdivide);
->>>>>>> 87785bc (feat: smt visible)
   divideTetra(
     vertices[0],
     vertices[1],
@@ -175,16 +169,9 @@ function render() {
     vertices[3],
     numTimesToSubdivide
   );
-<<<<<<< HEAD
-
-=======
->>>>>>> 87785bc (feat: smt visible)
   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, points.length);
   points = [];
-<<<<<<< HEAD
   colors = [];
-=======
->>>>>>> 87785bc (feat: smt visible)
 }
