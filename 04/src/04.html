@@ -8,33 +8,13 @@
 
     <script id="vertex-shader" type="x-shader/x-vertex">
 #version 300 es
-<<<<<<< HEAD
-<<<<<<< HEAD
 in vec3 aPosition;
 in vec3 aColor;
 out vec4 vColor;
 
 void main()
-=======
-in vec4 aPosition;
-=======
-in vec3 aPosition;
->>>>>>> 5e9cc86 (feat attempt 5)
-in vec3 aColor;
-out vec4 vColor;
-void
-main()
->>>>>>> 78620f4 (feat Initial attempt2)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     gl_Position = vec4(aPosition, 1.0);
-=======
-    gl_Position = aPosition;
->>>>>>> 87785bc (feat: smt visible)
-=======
-    gl_Position = vec4(aPosition, 1.0);;
->>>>>>> 5e9cc86 (feat attempt 5)
     vColor = vec4(aColor,1.0);
 }
 </script>
@@ -42,27 +22,11 @@ main()
     <script id="fragment-shader" type="x-shader/x-fragment">
 #version 300 es
 precision mediump float;
-<<<<<<< HEAD
-<<<<<<< HEAD
 in vec4 vColor;
-=======
->>>>>>> 78620f4 (feat Initial attempt2)
 out vec4 fColor;
 
 void main()
 {   
-=======
-in vec4 vColor;
-out vec4 fColor;
-
-void
-main()
-<<<<<<< HEAD
-{
->>>>>>> 87785bc (feat: smt visible)
-=======
-{   
->>>>>>> 57a72eb (feat attempt 2)
     fColor = vColor;
 }
 </script>
