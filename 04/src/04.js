@@ -38,13 +38,7 @@ function init() {
     vec3(-0.8165, -0.4714, 0.3333),
     vec3(0.8165, -0.4714, 0.3333),
   ];
-  divideTetra(
-    vertices[0],
-    vertices[1],
-    vertices[2],
-    vertices[3],
-    5
-  );
+  divideTetra(vertices[0], vertices[1], vertices[2], vertices[3], 5);
 
   gl.viewport(0, 0, canvas.width, canvas.height);
   gl.clearColor(1.0, 1.0, 1.0, 1.0);
@@ -74,15 +68,14 @@ function init() {
   // console.log("positionLoc, aPosition", positionLoc);
   document.getElementById("slider").onchange = function (event) {
     numTimesToSubdivide = parseInt(event.target.value);
-    console.log("numTimesToSubdivide", numTimesToSubdivide);
     render();
   };
 
   render();
 }
-function triangle(a, b, c) {
-  points.push(a, b, c);
-}
+// function triangle(a, b, c) {
+//   points.push(a, b, c);
+// }
 
 function triangle(a, b, c, color) {
   colors.push(baseColors[color]);
