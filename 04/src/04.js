@@ -73,13 +73,17 @@ function init() {
 
   render();
 }
-function triangle(a, b, c) {
-  points.push(a, b, c);
-}
+// function triangle(a, b, c) {
+//   points.push(a, b, c);
+// }
 
 function triangle(a, b, c, color) {
-  colors.push(baseColors[color], baseColors[color], baseColors[color]);
-  points.push(a, b, c);
+  colors.push(baseColors[color]);
+  points.push(a);
+  colors.push(baseColors[color]);
+  points.push(b);
+  colors.push(baseColors[color]);
+  points.push(c);
 }
 function tetra(a, b, c, d) {
   triangle(a, c, b, 0);
@@ -94,51 +98,13 @@ function divideTetra(a, b, c, d, count) {
   if (count === 0) {
     tetra(a, b, c, d);
     return;
-  }
-
-  else {
+  } else {
     let ab = getMiddlePoint(a, b);
     let ac = getMiddlePoint(a, c);
     let ad = getMiddlePoint(a, d);
     let bc = getMiddlePoint(b, c);
     let bd = getMiddlePoint(b, d);
     let cd = getMiddlePoint(c, d);
-
-    --count;
-
-    divideTetra(a, ab, ac, ad, count);
-    divideTetra(ab, b, bc, bd, count);
-    divideTetra(ac, bc, c, cd, count);
-    divideTetra(ad, bd, cd, d, count);
-  }
-}
-function tetra(a, b, c, d) {
-  triangle(a, c, b, 0);
-  triangle(a, c, d, 1);
-  triangle(a, b, d, 2);
-  triangle(b, c, d, 3);
-}
-function getMiddlePoint(u, v) {
-  return [0.5 * (u[0] + v[0]), 0.5 * (u[1] + v[1]), 0.5 * (u[2] + v[2])];
-}
-function divideTetra(a, b, c, d, count) {
-  if (count === 0) {
-    tetra(a, b, c, d);
-    // return;
-  }
-  //   let ab = getMiddlePoint(a, b);
-  //   let ac = getMiddlePoint(a, c);
-  //   let ad = getMiddlePoint(a, d);
-  //   let bc = getMiddlePoint(b, c);
-  //   let bd = getMiddlePoint(b, d);
-  //   let cd = getMiddlePoint(c, d);
-  else {
-    var ab = mix(a, b, 0.5);
-    var ac = mix(a, c, 0.5);
-    var ad = mix(a, d, 0.5);
-    var bc = mix(b, c, 0.5);
-    var bd = mix(b, d, 0.5);
-    var cd = mix(c, d, 0.5);
 
     --count;
 
@@ -174,6 +140,8 @@ function render() {
     vertices[3],
     numTimesToSubdivide
   );
+  console.log("numTimesToSubdivide render", numTimesToSubdivide);
+  //   gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer); // Bind the buffer
 
   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
   gl.clear(gl.COLOR_BUFFER_BIT);
