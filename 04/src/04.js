@@ -78,7 +78,7 @@ function triangle(a, b, c) {
 }
 
 function triangle(a, b, c, color) {
-  colors.push(base_colors[color], base_colors[color], base_colors[color]);
+  colors.push(baseColors[color], baseColors[color], baseColors[color]);
   points.push(a, b, c);
 }
 function tetra(a, b, c, d) {
@@ -93,21 +93,16 @@ function getMiddlePoint(u, v) {
 function divideTetra(a, b, c, d, count) {
   if (count === 0) {
     tetra(a, b, c, d);
-    // return;
+    return;
   }
-  //   let ab = getMiddlePoint(a, b);
-  //   let ac = getMiddlePoint(a, c);
-  //   let ad = getMiddlePoint(a, d);
-  //   let bc = getMiddlePoint(b, c);
-  //   let bd = getMiddlePoint(b, d);
-  //   let cd = getMiddlePoint(c, d);
+
   else {
-    var ab = mix(a, b, 0.5);
-    var ac = mix(a, c, 0.5);
-    var ad = mix(a, d, 0.5);
-    var bc = mix(b, c, 0.5);
-    var bd = mix(b, d, 0.5);
-    var cd = mix(c, d, 0.5);
+    let ab = getMiddlePoint(a, b);
+    let ac = getMiddlePoint(a, c);
+    let ad = getMiddlePoint(a, d);
+    let bc = getMiddlePoint(b, c);
+    let bd = getMiddlePoint(b, d);
+    let cd = getMiddlePoint(c, d);
 
     --count;
 
