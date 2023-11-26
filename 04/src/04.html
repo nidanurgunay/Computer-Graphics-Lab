@@ -8,11 +8,18 @@
 
     <script id="vertex-shader" type="x-shader/x-vertex">
 #version 300 es
+<<<<<<< HEAD
 in vec3 aPosition;
 in vec3 aColor;
 out vec4 vColor;
 
 void main()
+=======
+in vec4 aPosition;
+in vec3 aColor;
+void
+main()
+>>>>>>> 78620f4 (feat Initial attempt2)
 {
     gl_Position = vec4(aPosition, 1.0);
     vColor = vec4(aColor,1.0);
@@ -22,7 +29,10 @@ void main()
     <script id="fragment-shader" type="x-shader/x-fragment">
 #version 300 es
 precision mediump float;
+<<<<<<< HEAD
 in vec4 vColor;
+=======
+>>>>>>> 78620f4 (feat Initial attempt2)
 out vec4 fColor;
 
 void main()
