@@ -14,19 +14,7 @@ var baseColors = [
   vec3(0.0, 0.0, 1.0),
   vec3(0.0, 0.0, 0.0),
 ];
-let baseColors = [
-  [1.0, 0.0, 0.0],
-  [0.0, 1.0, 0.0],
-  [0.0, 0.0, 1.0],
-  [0.0, 0.0, 0.0],
-];
 
-var baseColors = [
-  [1.0, 0.0, 0.0],
-  [0.0, 1.0, 0.0],
-  [0.0, 0.0, 1.0],
-  [1.0, 1.0, 1.0],
-];
 function init() {
   canvas = document.getElementById("gl-canvas");
 
@@ -136,7 +124,7 @@ function getMiddlePoint(u, v) {
 function divideTetra(a, b, c, d, count) {
   if (count === 0) {
     tetra(a, b, c, d);
-    return;
+    // return;
   }
   //   let ab = getMiddlePoint(a, b);
   //   let ac = getMiddlePoint(a, c);
@@ -144,18 +132,23 @@ function divideTetra(a, b, c, d, count) {
   //   let bc = getMiddlePoint(b, c);
   //   let bd = getMiddlePoint(b, d);
   //   let cd = getMiddlePoint(c, d);
-  var ab = mix(a, b, 0.5);
-  var ac = mix(a, c, 0.5);
-  var ad = mix(a, d, 0.5);
-  var bc = mix(b, c, 0.5);
-  var bd = mix(b, d, 0.5);
-  var cd = mix(c, d, 0.5);
-  --count;
-  divideTetra(a, ab, ac, ad, count);
-  divideTetra(ab, b, bc, bd, count);
-  divideTetra(ac, bc, c, cd, count);
-  divideTetra(ad, bd, cd, d, count);
+  else {
+    var ab = mix(a, b, 0.5);
+    var ac = mix(a, c, 0.5);
+    var ad = mix(a, d, 0.5);
+    var bc = mix(b, c, 0.5);
+    var bd = mix(b, d, 0.5);
+    var cd = mix(c, d, 0.5);
+
+    --count;
+
+    divideTetra(a, ab, ac, ad, count);
+    divideTetra(ab, b, bc, bd, count);
+    divideTetra(ac, bc, c, cd, count);
+    divideTetra(ad, bd, cd, d, count);
+  }
 }
+
 window.onload = init;
 
 function render() {
@@ -182,13 +175,7 @@ function render() {
     numTimesToSubdivide
   );
 
-  //   let cBuffer = gl.createBuffer();
-  //   gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
-  //   gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
-
-  //   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
-  //   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(colors));
-
+  gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, points.length);
   points = [];
