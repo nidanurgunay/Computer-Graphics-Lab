@@ -17,11 +17,16 @@ void main()
 =======
 in vec4 aPosition;
 in vec3 aColor;
+out vec4 vColor;
 void
 main()
 >>>>>>> 78620f4 (feat Initial attempt2)
 {
+<<<<<<< HEAD
     gl_Position = vec4(aPosition, 1.0);
+=======
+    gl_Position = aPosition;
+>>>>>>> 87785bc (feat: smt visible)
     vColor = vec4(aColor,1.0);
 }
 </script>
@@ -30,6 +35,7 @@ main()
 #version 300 es
 precision mediump float;
 <<<<<<< HEAD
+<<<<<<< HEAD
 in vec4 vColor;
 =======
 >>>>>>> 78620f4 (feat Initial attempt2)
@@ -37,6 +43,14 @@ out vec4 fColor;
 
 void main()
 {   
+=======
+in vec4 vColor;
+out vec4 fColor;
+
+void
+main()
+{
+>>>>>>> 87785bc (feat: smt visible)
     fColor = vColor;
 }
 </script>

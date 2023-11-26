@@ -112,39 +112,32 @@ function divideTetra(a, b, c, d, count) {
     divideTetra(ad, bd, cd, d, count);
   }
 }
-
-function triangle (a, b, c, color) {
-  colors.push(baseColors[color])
-  points.push(a)
-  colors.push(baseColors[color])
-  points.push(b)
-  colors.push(baseColors[color])
-  points.push(c)
+function tetra(a, b, c, d) {
+  triangle(a, c, b, 0);
+  triangle(a, c, d, 1);
+  triangle(a, b, d, 2);
+  triangle(b, c, d, 3);
 }
-function tetra (a, b, c, d) {
-    triangle(a, c, b, 0)
-    triangle(a, c, d, 1)
-    triangle(a, b, d, 2)
-    triangle(b, c, d, 3)
+function getMiddlePoint(u, v) {
+  return [0.5 * (u[0] + v[0]), 0.5 * (u[1] + v[1]), 0.5 * (u[2] + v[2])];
+}
+function divideTetra(a, b, c, d, count) {
+  if (count === 0) {
+    tetra(a, b, c, d);
+    return;
   }
-
-  function divideTetra(a, b, c, d, count) {
-    if(count===0){
-      tetra(a, b, c, d)
-      return
-    }
-    let ab = getMiddlePoint(a, b)
-    let ac = getMiddlePoint(a, c)
-    let ad = getMiddlePoint(a, d)
-    let bc = getMiddlePoint(b, c)
-    let bd = getMiddlePoint(b, d)
-    let cd = getMiddlePoint(c, d)
-    --count
-    divideTetra(a, ab, ac, ad, count)
-    divideTetra(ab, b, bc, bd, count)
-    divideTetra(ac, bc, c, cd, count)
-    divideTetra(ad, bd, cd, d, count)
-  }
+  let ab = getMiddlePoint(a, b);
+  let ac = getMiddlePoint(a, c);
+  let ad = getMiddlePoint(a, d);
+  let bc = getMiddlePoint(b, c);
+  let bd = getMiddlePoint(b, d);
+  let cd = getMiddlePoint(c, d);
+  --count;
+  divideTetra(a, ab, ac, ad, count);
+  divideTetra(ab, b, bc, bd, count);
+  divideTetra(ac, bc, c, cd, count);
+  divideTetra(ad, bd, cd, d, count);
+}
 window.onload = init;
 
 function render() {
@@ -153,16 +146,28 @@ function render() {
   //     vec2(0, 1),
   //     vec2(1, -1)
   // ];
+<<<<<<< HEAD
   point = [];
   colors = [];
   console.log("colors at render", colors);
   console.log("points at render", points);
+=======
+  console.log("colors at render", colors);
+  console.log("points at render", points);
+
+>>>>>>> 87785bc (feat: smt visible)
   var vertices = [
     vec3(0.0, 0.0, -1.0),
     vec3(0.0, 0.9428, 0.3333),
     vec3(-0.8165, -0.4714, 0.3333),
     vec3(0.8165, -0.4714, 0.3333),
   ];
+<<<<<<< HEAD
+=======
+  points = [];
+  // divideTriangle(vertices[0], vertices[1], vertices[2],
+  //     numTimesToSubdivide);
+>>>>>>> 87785bc (feat: smt visible)
   divideTetra(
     vertices[0],
     vertices[1],
@@ -170,10 +175,16 @@ function render() {
     vertices[3],
     numTimesToSubdivide
   );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 87785bc (feat: smt visible)
   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, points.length);
   points = [];
+<<<<<<< HEAD
   colors = [];
+=======
+>>>>>>> 87785bc (feat: smt visible)
 }
