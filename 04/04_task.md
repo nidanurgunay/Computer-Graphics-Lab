@@ -44,7 +44,7 @@ Let $`A_n`$ be the area of the $`n`$-th Sierpiński-Triangle $`T_n`$ - the white
 
     $A_0$ = A
 
-    $A_n$ = $ (\frac{3}{4}) \cdot A_{n-1}$
+    $A_n$ = $`(\frac{3}{4}) \cdot A_{n-1}`$
 
 2. Show by complete induction that $`A_n = (\frac{3}{4})^n \cdot A`$ holds. (2 point)
 
@@ -54,11 +54,14 @@ Let $`A_n`$ be the area of the $`n`$-th Sierpiński-Triangle $`T_n`$ - the white
 
     from recursive equation
 
-    $A_{n+1}$ = $ (\frac{3}{4}) \cdot A_{n}$ and $A_n = (\frac{3}{4})^n \cdot A$
+    $A_{n+1} = (\frac{3}{4}) \cdot A_{n}$
+
+    $A_n = (\frac{3}{4})^n \cdot A$
 
     then
 
-     $A_{n+1}$ = $ (\frac{3}{4}) \cdot A_{n}$ =  $ (\frac{3}{4}) \cdot (\frac{3}{4})^n\cdot A$
+     $A_{n+1} =  (\frac{3}{4}) \cdot A_{n} =  
+      (\frac{3}{4}) \cdot (\frac{3}{4})^n\cdot A$
 
      = $A_{n+1} = (\frac{3}{4})^{n+1} \cdot A$
 
