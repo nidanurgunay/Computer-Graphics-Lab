@@ -52,7 +52,7 @@ function init() {
 
   //  Load shaders and initialize attribute buffers
 
-  var program = initShaders(gl, "vertex-shader", "fragment-shader");
+  program = initShaders(gl, "vertex-shader", "fragment-shader");
   gl.useProgram(program);
 
   var cBuffer = gl.createBuffer();
@@ -169,7 +169,10 @@ function render() {
     vertices[3],
     numTimesToSubdivide
   );
+
   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
+  gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(colors));
+
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, points.length);
   points = [];
