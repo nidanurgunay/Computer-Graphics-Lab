@@ -39,7 +39,7 @@ function init() {
     vec3(0.8165, -0.4714, 0.3333),
   ];
   divideTetra(vertices[0], vertices[1], vertices[2], vertices[3], 5);
-
+  divideTetra(vertices[0], vertices[1], vertices[2], vertices[3], 0);
   gl.viewport(0, 0, canvas.width, canvas.height);
   gl.clearColor(1.0, 1.0, 1.0, 1.0);
   gl.enable(gl.DEPTH_TEST);
@@ -73,13 +73,17 @@ function init() {
 
   render();
 }
-function triangle(a, b, c) {
-  points.push(a, b, c);
-}
+// function triangle(a, b, c) {
+//   points.push(a, b, c);
+// }
 
 function triangle(a, b, c, color) {
-  colors.push(baseColors[color], baseColors[color], baseColors[color]);
-  points.push(a, b, c);
+  colors.push(baseColors[color]);
+  points.push(a);
+  colors.push(baseColors[color]);
+  points.push(b);
+  colors.push(baseColors[color]);
+  points.push(c);
 }
 function tetra(a, b, c, d) {
   triangle(a, c, b, 0);
@@ -94,9 +98,7 @@ function divideTetra(a, b, c, d, count) {
   if (count === 0) {
     tetra(a, b, c, d);
     return;
-  }
-
-  else {
+  } else {
     let ab = getMiddlePoint(a, b);
     let ac = getMiddlePoint(a, c);
     let ad = getMiddlePoint(a, d);
@@ -138,6 +140,8 @@ function render() {
     vertices[3],
     numTimesToSubdivide
   );
+  console.log("numTimesToSubdivide render", numTimesToSubdivide);
+  //   gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer); // Bind the buffer
 
   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
   gl.clear(gl.COLOR_BUFFER_BIT);
