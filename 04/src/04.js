@@ -7,19 +7,14 @@ var numTimesToSubdivide = 0;
 var bufferId;
 var points = [];
 var colors = [];
-// var baseColors = [
-//   vec3(1.0, 0.0, 0.0),
-//   vec3(0.0, 1.0, 0.0),
-//   vec3(0.0, 0.0, 1.0),
-//   vec3(1.0, 1.0, 1.0),
-// ];
 
 var baseColors = [
-  [1.0, 0.0, 0.0],
-  [0.0, 1.0, 0.0],
-  [0.0, 0.0, 1.0],
-  [1.0, 1.0, 1.0],
+  vec3(1.0, 0.0, 0.0),
+  vec3(0.0, 1.0, 0.0),
+  vec3(0.0, 0.0, 1.0),
+  vec3(0.0, 0.0, 0.0),
 ];
+
 function init() {
   canvas = document.getElementById("gl-canvas");
 
@@ -43,21 +38,11 @@ function init() {
     vec3(-0.8165, -0.4714, 0.3333),
     vec3(0.8165, -0.4714, 0.3333),
   ];
-  points = [];
-  colors = [];
-
-  // divideTriangle(vertices[0], vertices[1], vertices[2],
-  //     numTimesToSubdivide);
-  divideTetra(
-    vertices[0],
-    vertices[1],
-    vertices[2],
-    vertices[3],
-    numTimesToSubdivide
-  );
+  divideTetra(vertices[0], vertices[1], vertices[2], vertices[3], 5);
 
   gl.viewport(0, 0, canvas.width, canvas.height);
   gl.clearColor(1.0, 1.0, 1.0, 1.0);
+  gl.enable(gl.DEPTH_TEST);
 
   //  Load shaders and initialize attribute buffers
 
@@ -67,29 +52,18 @@ function init() {
   var cBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
-  console.log("cBuffer", cBuffer);
 
-  //   let pointBuffer = gl.createBuffer();
-  //   gl.bindBuffer(gl.ARRAY_BUFFER, pointBuffer);
-  //   gl.bufferData(gl.ARRAY_BUFFER, 8 * Math.pow(3, 6), gl.STATIC_DRAW);
-
-  //   var vColor = gl.getAttribLocation(program, "vColor");
-  //   gl.vertexAttribPointer(vColor, 3, gl.FLOAT, false, 0, 0);
-  //   gl.enableVertexAttribArray(vColor);
-  //   console.log("vcolor", vColor);
   var aColor = gl.getAttribLocation(program, "aColor");
-  gl.vertexAttribPointer(aColor, 4, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(aColor);
-  console.log("aColor", aColor);
+
   // Associate out shader variables with our data buffer
   let vBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
-  console.log("vBuffer", vBuffer);
 
   var positionLoc = gl.getAttribLocation(program, "aPosition");
   gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
-  //gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(positionLoc);
   // console.log("positionLoc, aPosition", positionLoc);
   document.getElementById("slider").onchange = function (event) {
@@ -99,20 +73,13 @@ function init() {
 
   render();
 }
+function triangle(a, b, c) {
+  points.push(a, b, c);
+}
 
 function triangle(a, b, c, color) {
-  //   colors.push(flatten(baseColors[color]));
-  //   points.push(a);
-  //   colors.push(flatten(baseColors[color]));
-  //   points.push(b);
-  //   colors.push(flatten(baseColors[color]));
-  //   points.push(c);
-  colors.push(baseColors[color]);
-  points.push(a);
-  colors.push(baseColors[color]);
-  points.push(b);
-  colors.push(baseColors[color]);
-  points.push(c);
+  colors.push(base_colors[color], base_colors[color], base_colors[color]);
+  points.push(a, b, c);
 }
 function tetra(a, b, c, d) {
   triangle(a, c, b, 0);
@@ -126,7 +93,7 @@ function getMiddlePoint(u, v) {
 function divideTetra(a, b, c, d, count) {
   if (count === 0) {
     tetra(a, b, c, d);
-    return;
+    // return;
   }
   //   let ab = getMiddlePoint(a, b);
   //   let ac = getMiddlePoint(a, c);
@@ -134,18 +101,23 @@ function divideTetra(a, b, c, d, count) {
   //   let bc = getMiddlePoint(b, c);
   //   let bd = getMiddlePoint(b, d);
   //   let cd = getMiddlePoint(c, d);
-  var ab = mix(a, b, 0.5);
-  var ac = mix(a, c, 0.5);
-  var ad = mix(a, d, 0.5);
-  var bc = mix(b, c, 0.5);
-  var bd = mix(b, d, 0.5);
-  var cd = mix(c, d, 0.5);
-  --count;
-  divideTetra(a, ab, ac, ad, count);
-  divideTetra(ab, b, bc, bd, count);
-  divideTetra(ac, bc, c, cd, count);
-  divideTetra(ad, bd, cd, d, count);
+  else {
+    var ab = mix(a, b, 0.5);
+    var ac = mix(a, c, 0.5);
+    var ad = mix(a, d, 0.5);
+    var bc = mix(b, c, 0.5);
+    var bd = mix(b, d, 0.5);
+    var cd = mix(c, d, 0.5);
+
+    --count;
+
+    divideTetra(a, ab, ac, ad, count);
+    divideTetra(ab, b, bc, bd, count);
+    divideTetra(ac, bc, c, cd, count);
+    divideTetra(ad, bd, cd, d, count);
+  }
 }
+
 window.onload = init;
 
 function render() {
@@ -154,38 +126,27 @@ function render() {
   //     vec2(0, 1),
   //     vec2(1, -1)
   // ];
+  point = [];
+  colors = [];
   console.log("colors at render", colors);
   console.log("points at render", points);
+  var vertices = [
+    vec3(0.0, 0.0, -1.0),
+    vec3(0.0, 0.9428, 0.3333),
+    vec3(-0.8165, -0.4714, 0.3333),
+    vec3(0.8165, -0.4714, 0.3333),
+  ];
+  divideTetra(
+    vertices[0],
+    vertices[1],
+    vertices[2],
+    vertices[3],
+    numTimesToSubdivide
+  );
 
-  //   var vertices = [
-  //     vec3(0.0, 0.0, -1.0),
-  //     vec3(0.0, 0.9428, 0.3333),
-  //     vec3(-0.8165, -0.4714, 0.3333),
-  //     vec3(0.8165, -0.4714, 0.3333),
-  //   ];
-  //   points = [];
-  //   colors = [];
-  //   // divideTriangle(vertices[0], vertices[1], vertices[2],
-  //   //     numTimesToSubdivide);
-  //   divideTetra(
-  //     vertices[0],
-  //     vertices[1],
-  //     vertices[2],
-  //     vertices[3],
-  //     numTimesToSubdivide
-  //   );
-  //   let vBuffer = gl.createBuffer();
-  //   gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
-  //   gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
-
-  //   let cBuffer = gl.createBuffer();
-  //   gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
-  //   gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
-
-  //   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
-  //   gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(colors));
-
+  gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, points.length);
   points = [];
+  colors = [];
 }
