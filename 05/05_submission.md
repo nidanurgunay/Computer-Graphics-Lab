@@ -1,7 +1,7 @@
 # Solution Exercise 5
 Group: Nidanur Günay, Yu Zeyuan
 ## Task 1
-1.1) Let `T_1` and `T_2`are translations by vectors $`t_1`$ and $`t_2`$ respectively.
+1.1) Let `T_1` and `T_2`are translations by vectors $t_1$ and $`t_2`$ respectively.
 
 - $`T_1`$ \circ $`T_2`$ (x)  = $`T_1`$ ( $`T_2`$  (x)) =   $`T_1`$ ( x + $`t_1`$) = x +  $`t_1`$ +  $`t_2`$.
 Since addition is commutative, translation is also commutative. 
