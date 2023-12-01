@@ -10,6 +10,9 @@ let rotationSpeed = 10e-3
 
 let numTimesToSubdivide = 3;
 
+let uRotationMatrix;
+let rotationMatrix = mat4();  // Initialize with the identity matrix
+
 document.addEventListener("keyup", keyUp, false);
 
 window.onload = function init() {
@@ -36,8 +39,12 @@ window.onload = function init() {
 
     //  Load shaders and initialize attribute buffers
 
-    let program = initShaders(gl, "vertex-shader", "fragment-shader");
-    gl.useProgram(program);
+     let program = initShaders(gl, "vertex-shader", "fragment-shader");
+     gl.useProgram(program);
+ 
+     // Get the uniform location for the rotation matrix AFTER using the shader program
+     uRotationMatrix = gl.getUniformLocation(program, "uRotationMatrix");
+ 
 
     // Create a buffer object, initialize it, and associate it with the
     //  associated attribute variable in our vertex shader
@@ -144,6 +151,13 @@ function divideTetra(a, b, c, d, count) {
 
 
 function render() {
+    theta += rotationSpeed;
+    console.log("Rotation Speed: "+rotationSpeed);
+    // Create a rotation matrix and pass it as a uniform to the shader
+    rotationMatrix = rotate(theta, vec3(0, 0, 1));  // Rotation around the 
+
+    gl.uniformMatrix4fv(uRotationMatrix, false, flatten(rotationMatrix));
+
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLES, 0, positions.length);
     requestAnimationFrame(render);
@@ -156,4 +170,31 @@ function keyUp(e) {
     if (e.key === "ArrowRight") {
         rotationSpeed -= 10e-4;
     }
+}
+
+function rotate(angle, axis) {//counter-clockwise!
+    let c = Math.cos(radians(angle));
+    let s = Math.sin(radians(angle));
+    let t = 1.0 -c;
+
+    let rotationMatrix = mat4(
+        t * axis[0] * axis[0] + c, t * axis[0] * axis[1] - s * axis[2], t * axis[0] * axis[2] + s * axis[1], 0.0,
+        t * axis[0] * axis[1] + s * axis[2], t * axis[1] * axis[1] + c, t * axis[1] * axis[2] - s * axis[0], 0.0,
+        t * axis[0] * axis[2] - s * axis[1], t * axis[1] * axis[2] + s * axis[0], t * axis[2] * axis[2] + c, 0.0,
+        0.0, 0.0, 0.0, 1.0
+    );
+
+/*
+let rotationMatrix = mat4(
+    c,-s,0.0            , 0.0,
+    s,c,0.0            , 0.0,
+    0.0,0.0,1.0            , 0.0,
+    0.0, 0.0, 0.0, 1.0
+);
+*/
+    return rotationMatrix;
+}
+
+function radians(degrees) {
+    return degrees * Math.PI / 180.0;
 }
