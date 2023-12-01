@@ -15,6 +15,7 @@ var baseColors = [
   vec3(0.0, 0.0, 0.0),
 ];
 
+
 function init() {
   canvas = document.getElementById("gl-canvas");
 
@@ -149,3 +150,22 @@ function render() {
   points = [];
   colors = [];
 }
+
+//download the canvas as PNG
+/*function download(canvas_name) {
+    //https://gist.github.com/Kaundur/2aca9a9edb003555f44195e826af4084
+
+    // Get the canvas
+    let canvas = document.getElementById(canvas_name);
+
+    // Convert the canvas to data
+    var image = canvas.toDataURL();
+    // Create a link
+    var aDownloadLink = document.createElement('a');
+    // Add the name of the file to the link
+    aDownloadLink.download = canvas_name + '.png';
+    // Attach the data to the link
+    aDownloadLink.href = image;
+    // Get the code to click the download link
+    aDownloadLink.click();
+}*/
