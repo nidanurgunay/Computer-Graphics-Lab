@@ -43,11 +43,25 @@ Since multiplication is commutative, One rotation and one uniform scaling is als
  = $\frac{1}{2}$ + $\frac{1}{2}$ $i$ + $\frac{1}{2}$ $j$ + $\frac{1}{2}$ $ij$  
  = $\frac{1}{2}$ + $\frac{1}{2}$ $i$ + $\frac{1}{2}$ $j$ + $\frac{1}{2}$ $k$ 
  
-1) Lets say translation is represented by 
+1)
+ Translation vector 
 ```math
 T =  \begin{vmatrix}1&0&0&T_y\\0&1&0&T_z\\0&0&1&T_x\\0&0&0&1\end{vmatrix}
-
 ```
+And rotation vector R is filled according to the rotation axes. 
+
+-  We remember that we have point p and applying transformation in the order of A, B and C to that point
+```math
+q = (C(B(Ap)))) = CBAp 
+```
+- Since the matrix product is associative
+ ```math
+ CBAp = Mp 
+``` 
+- Therefore, any sequence of translation and rotation can be combined to single matrix by multiplying all transformation matrices.
+
+- Resulted transformation matrix M can be decoomposed to 
+
 ## Task 2 
 Please edit the HTML/JS files in the ``src`` folder!
 
