@@ -18,7 +18,7 @@ Both solution results the same which proves  translation is  commutative.
 
 Since multiplication is commutative, One rotation and one uniform scaling is also commutative. 
 
-- ($`S`$ $\circ$ $`R`$) (x) = $`S`$ ( $`R`(x)) =  S(Rx) = kRx$  
+- ($`S`$ $\circ$ $`R`$) (x) = $`S`$ ( $R(x)) =  S(Rx) = kRx$  
 
 1.3) Let $q_1$ and $q_2$ are 2 quaternions that represents the roatation by angles  $\theta_1$  and  $\theta_2$ respectively around the same unit axis vector which is $u = (u_x, u_y,u_z)$ .
 - $q_1$ = $\cos$($\frac{\theta_1}{2} ) $+ $\sin(\frac{\theta_1}{2} $) $(u_xi, u_zj, u_zk)$   
