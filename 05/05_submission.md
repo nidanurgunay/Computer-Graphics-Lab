@@ -45,9 +45,9 @@ Since multiplication is commutative, One rotation and one uniform scaling is als
  
 1) Lets say translation is represented by $T$ = $[[ 1 0 0 $T_y$ \] [ 0 1 0 $T_z$ \] [0 0 1 $T_x$ \] [0 0 0 1 \] \]$
 
-$$ \begin{vmatrix}
+$\begin{vmatrix}
 1 & 0 & 0 & T_y \\  0 & 1 & 0 & T_z \\ 0 & 0 & 1 & T_x \\ 0 & 0 & 0 & 1 \\
-\end{vmatrix} $$
+\end{vmatrix}$
 ## Task 2 
 Please edit the HTML/JS files in the ``src`` folder!
 
