@@ -18,7 +18,7 @@ Both solution results the same which proves  translation is  commutative.
 
 Since multiplication is commutative, One rotation and one uniform scaling is also commutative. 
 
-- ($`S`$ \circ $`R`$) (x) = $`S`$ ( $`R`$ (x)) =  S(Rx) = kRx
+- ($`S`$ \circ $`R`$) (x) = $`S`$ ( $`R`(x)) =  S(Rx) = kRx$  
 
 1.3) Let $`R_{\theta 1}`$ and  $`R_{\theta 2}`$ be rotations by angles  $\theta1$  and  $ \theta2 $ respectively around the same axis. Let p is our point.
 
