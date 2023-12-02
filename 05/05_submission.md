@@ -22,15 +22,24 @@ Since multiplication is commutative, One rotation and one uniform scaling is als
 
 1.3) Let $q_1$ and $q_2$ are 2 quaternions that represents the roatation by angles  $\theta_1$  and  $\theta_2$ respectively around the same unit axis vector which is $u = (u_x, u_y,u_z)$ .
 - $q_1$ = $\cos$( $\frac{\theta_1}{2} )$+ $\sin$( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$   
-- $q_2$ = $\cos$ ( $\frac{\theta_2}{2}$) + $\sin$ ( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$   
+- $q_2$ = $\cos$ ( $\frac{\theta_2}{2}$) + $\sin$ ( $\frac{\theta_2}{2}$) $(u_xi, u_zj, u_zk)$   
 
-- $q_1$.$q_2$ =  $\cos$( $\frac{\theta_1}{2}$) $\cos$( $\frac {\theta_1}{2})$  + $\cos$( $\frac{\theta_1}{2}$ )$\sin$ ( $\frac{\theta_2}{2}$) $(u_xi, u_zj, u_zk)$ + $\cos$( $\frac{\theta_2}{2}$ ) $\sin$( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$  + $\sin$( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$ $\sin$ ( $\frac{\theta_2}{2}) (u_xi, u_zj, u_zk)$   
+- $q_1$.$q_2$ =  $\cos$( $\frac{\theta_1}{2}$) $\cos$( $\frac {\theta_2}{2})$  + $\cos$( $\frac{\theta_1}{2}$ )$\sin$ ( $\frac{\theta_2}{2}$) $(u_xi, u_zj, u_zk)$ + $\cos$( $\frac{\theta_2}{2}$ ) $\sin$( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$  + $\sin$( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$ $\sin$ ( $\frac{\theta_2}{2}) (u_xi, u_zj, u_zk)$   
 
 - $q_2$.$q_1$ = $\cos$ ( $\frac{\theta_1}{2}$ ) $\cos$( $\frac{\theta_2}{2}$ ) + $\cos$( $\frac{\theta_2}{2}$ ) $\sin$ ( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$ + $\cos$ ( $\frac{\theta_1}{2}$) $\sin$( $\frac{\theta_2}{2}$ ) $(u_xi, u_zj, u_zk)$ + $\sin$( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$ $\sin$ ( $\frac{\theta_2}{2}$) $(u_xi, u_zj, u_zk)$   
 
 - As it can be seen from the result $q_1.q_2 = q_2.q_1 $ which means  two rotations around the same axis is  commutative.
 
-## Task 2
+
+2.a) Quaternion for a rotation of 90 degrees around the X axis is:
+   - $q_x$ =  $\cos$($\frac{\pi}{4}$) + $\sin$($\frac{\pi}{4}$)$i$ = $\frac{\sqrt{2}}{2}$  + $\frac{\sqrt{2}}{2}$ $i$ 
+
+
+2.b) Quaternion for a rotation of 90 degrees around the Y axis is:
+   - $q_x$ =  $\cos$($\frac{\pi}{4}$) + $\sin$($\frac{\pi}{4}$)$j$ = $\frac{\sqrt{2}}{2}$  + $\frac{\sqrt{2}}{2}$ $j$ 
+
+
+## Task 2 
 Please edit the HTML/JS files in the ``src`` folder!
 
 *Include the images you created and downloaded for task 5 here.'*
