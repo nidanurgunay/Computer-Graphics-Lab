@@ -28,7 +28,7 @@ Since multiplication is commutative, One rotation and one uniform scaling is als
 
 - $q_2$.$q_1$ = $\cos$ ( $\frac{\theta_1}{2}$ ) $\cos$( $\frac{\theta_2}{2}$ ) + $\cos$( $\frac{\theta_2}{2}$ ) $\sin$ ( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$ + $\cos$ ( $\frac{\theta_1}{2}$) $\sin$( $\frac{\theta_2}{2}$ ) $(u_xi, u_zj, u_zk)$ + $\sin$( $\frac{\theta_1}{2}$) $(u_xi, u_zj, u_zk)$ $\sin$ ( $\frac{\theta_2}{2}$) $(u_xi, u_zj, u_zk)$   
 
-- As it can be seen from the result $q_1.q_2 = q_2.q_1 $ which means  two rotations around the same axis is  commutative.
+- As it can be seen from the result $q_1$ . $q_2$ = $q_2$ .$q_1$ which means  two rotations around the same axis is  commutative.
 
 
 2.a) Quaternion for a rotation of 90 degrees around the X axis is:
@@ -40,8 +40,8 @@ Since multiplication is commutative, One rotation and one uniform scaling is als
 
 3) - $q_x$ $q_y$ = $\frac{\sqrt{2}}{2}$ $\frac{\sqrt{2}}{2}$ +$\frac{\sqrt{2}}{2}$ $\frac{\sqrt{2}}{2}$ $i$ +  $\frac{\sqrt{2}}{2}$ $\frac{\sqrt{2}}{2}$ $j$ +  $\frac{\sqrt{2}}{2}$ $i$  $\frac{\sqrt{2}}{2}$ $j$ 
    
-    = $\frac{1}{2}$ + $\frac{1}{2}$ $i$ + $\frac{1}{2}$ $j$ + $\frac{1}{2}$ $ij$  
-
+ = $\frac{1}{2}$ + $\frac{1}{2}$ $i$ + $\frac{1}{2}$ $j$ + $\frac{1}{2}$ $ij$  
+ = $\frac{1}{2}$ + $\frac{1}{2}$ $i$ + $\frac{1}{2}$ $j$ + $\frac{1}{2}$ $k$ 
 ## Task 2 
 Please edit the HTML/JS files in the ``src`` folder!
 
