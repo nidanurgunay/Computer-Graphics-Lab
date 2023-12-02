@@ -36,7 +36,7 @@ Since multiplication is commutative, One rotation and one uniform scaling is als
 
 
 2.b) Quaternion for a rotation of 90 degrees around the Y axis is:
-   - $q_x$ =  $\cos$($\frac{\pi}{4}$) + $\sin$($\frac{\pi}{4}$)$j$ = $\frac{\sqrt{2}}{2}$  + $\frac{\sqrt{2}}{2}$ $j$ 
+   - $q_y$ =  $\cos$($\frac{\pi}{4}$) + $\sin$($\frac{\pi}{4}$)$j$ = $\frac{\sqrt{2}}{2}$  + $\frac{\sqrt{2}}{2}$ $j$ 
 
 
 ## Task 2 
