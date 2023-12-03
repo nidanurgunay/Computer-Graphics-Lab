@@ -43,8 +43,26 @@ Since multiplication is commutative, One rotation and one uniform scaling is als
  = $\frac{1}{2}$ + $\frac{1}{2}$ $i$ + $\frac{1}{2}$ $j$ + $\frac{1}{2}$ $ij$  
  = $\frac{1}{2}$ + $\frac{1}{2}$ $i$ + $\frac{1}{2}$ $j$ + $\frac{1}{2}$ $k$ 
  
-1)
- Translation vector 
+4)
+ Translation T is represented by addition of $translation vector t$.
+```math
+T(x) = x + t
+```
+And Rotation R is represented by multiplication by rotation vector R
+```math
+R(x) = Rx
+```
+- Any sequence of the translation and rotation transfromations can be represented as 
+
+```math
+q = R_n....R_1p + t_m +... + t_1
+q =  \textstyle\prod_{i=1}^n R_i p + \textstyle\sum_{j=1}^m t_j
+q = R_total p + t_total
+```
+
+
+
+
 ```math
 T =  \begin{vmatrix}1&0&0&T_y\\0&1&0&T_z\\0&0&1&T_x\\0&0&0&1\end{vmatrix}
 ```
@@ -60,7 +78,7 @@ q = (C(B(Ap)))) = CBAp
 ``` 
 - Therefore, any sequence of translation and rotation can be combined to single matrix by multiplying all transformation matrices.
 
-- Resulted transformation matrix M can be decoomposed to 
+- Resulted transformation matrix M can be decomposed to  
 
 ## Task 2 
 Please edit the HTML/JS files in the ``src`` folder!
