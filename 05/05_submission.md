@@ -56,6 +56,8 @@ R(x) = Rx
 
 ```math
 q = R_n....R_1p + t_m +... + t_1
+
+
 q =  \textstyle\prod_{i=1}^n R_i p + \textstyle\sum_{j=1}^m t_j
 q = R_total p + t_total
 ```
