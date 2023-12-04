@@ -65,6 +65,14 @@ The final view Matrix will be:
 ### Projection Matrix
 #### Orthographic
 Implement the orthographic projection function using the matrix shon in the book in chapter 5.4 on page 269 or in the lecture slides. Pass the automatically updating values in `frustum_params` to your function generating the orthographic projection matrix.
+
+```math
+   M_\text{orth} = \begin{bmatrix}
+      \frac{2}{r-l} & 0 & 0 & -\frac{r+l}{r-l} \\
+      0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b} \\
+      0 & 0 & -\frac{2}{f-n} & -\frac{n+f}{f-n} \\
+      0 & 0 & 0 & 1
+    \end{bmatrix}
 #### Perspective
 As shown in the figure above for the perspective frustum it is more common to specify the parameters of the pyramid shaped view volume by the vertical field of view (fov) and the aspect ration of the near clipping plane.
 You first have to calculate the values $t, b, r, l$ of the corners of the view volume. Please note, that in the JS code the fov is given in degress and the function `Math.tan()` expects radians.
