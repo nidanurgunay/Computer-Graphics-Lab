@@ -9,25 +9,25 @@ DEADLINE 18.12.2023 10:00 AM
 | ![Abbildung a)](resources/projection.png "Abbildung a)") |
 
 In order to use perspective to project a three-dimensional scene onto the image plane, WebGL models the clipping volume as a frustum of a pyramid (cf. Figure a), which can be represented by means of the projection matrix
-$
+```math
 M_\text{per} = \begin{bmatrix}
 \frac{2n}{r-l} & 0 & \frac{r+l}{r-l} & 0 \\
 0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\
 0 & 0 & \frac{-(f+n)}{f-n} & \frac{-2fn}{f-n} \\
 0 & 0 & -1 & 0
 \end{bmatrix}
-$
+```
 
 which maps directly to the canonical volume $`[-1, 1]^3`$. However, the perspective projection can also be thought of as an extension of the orthographic one, where a matrix $`P`$ first maps the truncated pyramid to the orthographic cuboid. The remaining mapping to $`[-1, 1]^3`$ is then done by the orthographic matrix $`M_\text{orth}`$. Let the sides of the projection cube be given as $`[l,r] \times [b,t] \times [f,n]`$.
 
-$
+```math
    M_\text{orth} = \begin{bmatrix}
       \frac{2}{r-l} & 0 & 0 & -\frac{r+l}{r-l} \\
       0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b} \\
       0 & 0 & -\frac{2}{f-n} & -\frac{n+f}{f-n} \\
       0 & 0 & 0 & 1
     \end{bmatrix}
-$
+```
 
 Determine the matrix $`P`$. (4 points)
 
@@ -53,14 +53,14 @@ This would lead to a left-hand coordinate system. To convert it to a righthand o
 4. $v' = -v$
 
 The final view Matrix will be:
-$
+```math
 \begin{bmatrix}
       n_x & n_y & n_z & -(n \cdot e) \\
       u_x & u_y & u_z & -(u \cdot e) \\
       v'_x & v'_y & v'_z & -(v' \cdot e) \\
       0 & 0 & 0 & 1
     \end{bmatrix}
-$
+```
 
 ### Projection Matrix
 #### Orthographic
@@ -79,14 +79,14 @@ $r = b \cdot aspect$
 
 With those values you can implement the perspective projection matrix:
 
-$
+```math
 M_\text{per} = \begin{bmatrix}
 \frac{2n}{r-l} & 0 & \frac{r+l}{r-l} & 0 \\
 0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\
 0 & 0 & \frac{-(f+n)}{f-n} & \frac{-2fn}{f-n} \\
 0 & 0 & -1 & 0
 \end{bmatrix}
-$
+```
 
 
 In the JS and shader code there are multiple which are marked with a `TODO`. At these places you must modify the respective matrix at the correct places. The following variables are already defined in the code, which you don't have to change anymore.
