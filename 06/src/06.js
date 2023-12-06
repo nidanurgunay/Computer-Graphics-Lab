@@ -294,14 +294,14 @@ function rotateY(angle_deg){
 }
 
 function ortho(left, right, top, bottom, near, far) {
-    //TODO: Implement this function based on the description of the LookAt fucntion in the book.
+    //TODO: Implement this function based on the description of the perspective projection.
 
     const ortho_mat = mat4();
     return ortho_mat
 }
 
 function perspective(fovy_deg, aspect, near, far) {
-    //TODO: Implement this function based on the description of the LookAt fucntion in the book.
+    //TODO: Implement this function based on the description of the orthograpic projection.
 
     let perspective_mat = mat4();
    
@@ -312,7 +312,7 @@ function perspective(fovy_deg, aspect, near, far) {
 
 function lookAt(eye, at, up) {
 
-   //TODO: Implement this function based on the description of the LookAt fucntion in the book.
+   //TODO: Implement this function based on the description of the LookAt function in the book.
 
     return mat4();
 }
