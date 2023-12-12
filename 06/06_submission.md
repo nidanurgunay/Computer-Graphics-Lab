@@ -6,11 +6,11 @@ M_\text{per} = M_\text{orth} P
 ```
 
 ```math
-M_\text{per } M_\text{orth}^\text{|} = M_\text{orth}^\text{|} M_\text{orth} P = P
+M_\text{per } M_\text{orth}^{\prime} = M_\text{orth}^{\prime} M_\text{orth} P = P
 ```
 
 ```math
-M_\text{orth}^\text{|} =
+M_\text{orth}^{\prime} =
 
 
 ```
