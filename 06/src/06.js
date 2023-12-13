@@ -310,13 +310,20 @@ function ortho(left, right, bottom, top, near, far) {
 
 function perspective(fovy_deg, aspect, near, far) {
     //TODO: Implement this function based on the description of the perspective projection.
+    t = Math.tan(fovy_deg/2) * near;
+    let b = -near;
+    let r = t*aspect
+    let l = b*aspect
 
     let perspective_mat = mat4();
-    perspective_mat = {
+    perspective_mat = mat4(
+        2*near/(r-l),0,(r+l)/(r-l),0,
+        0, 2*near/(t-b),(t+b)/(t-b),0,
+        0,0,-(far+near)/(far-near),-2*(far*near)/(far-near),
+        0,0,-1,0
 
 
-
-    }
+    )
 
     return perspective_mat
 
