@@ -19,6 +19,19 @@ M_\text{orth}^{\prime} = \begin{bmatrix}
 
 
 ```
+
+
+```math
+
+P = M_\text{orth}^{\prime} M_\text{per }  =  \begin{bmatrix}
+  n& 0 & 0 & 0\\
+      0 & n & 0 & 0\\
+      0 & 0 & f + n  & fn \\
+      0 & 0 & -1 & 0
+    \end{bmatrix}
+
+
+```
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
 
