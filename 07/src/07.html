@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Projection</title>
+
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+in highp vec3 in_position;
+in highp vec3 in_normal;
+
+uniform mat4 u_model;
+
+//get the uniform vec3 k_a, k_d, u_light_color and light position
+        
+flat out highp vec3 color;
+
+        
+void main() {
+    //TODO: Apply the model martrix to normal (just for this exercise, in subsequent exercises it will be more involved)
+
+    highp vec3 position = (u_model * vec4(in_position,1.0)).xyz;
+    gl_Position =  vec4(position,1.0);
+
+    //TODO: Calculate vector L from position to light source and normalize it 
+    //TODO: Normalize the in_normal after application of the model matrix (N)
+
+    //TODO: compute the light intensity d by the dot product between N and L. If it is negative set it to 0.
+    //TODO: calculate the diffuse and ambient lighting terms as described in the task.md
+    
+    color = vec3(0.0,0.0,0.0);
+
+}
+        
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+flat in highp vec3 color;
+
+out highp vec4 out_color;
+        
+void main() {
+    
+    out_color = vec4(color,1);
+}
+</script>
+<script type="text/javascript" src="resources/bunny.js"></script>
+<script type="text/javascript" src="resources/cube.js"></script>
+<script type="text/javascript" src="resources/suzanne.js"></script>
+<script type="text/javascript" src="resources/spot.js"></script>
+
+<script type="text/javascript" src="obj_loader/webgl-obj-loader.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MVnew.js"></script>
+    <script type="text/javascript" src="07.js"></script>
+    </object>
+</head>
+
+<body>
+    <div>
+        Animate <input id="animate_checkbox" type="checkbox" checked/>      
+
+        <label for="color-picker-light">Light Color:</label>
+        <input type="color" value="#ffffff" id="color-picker-light" />
+
+        <label for="color-picker-ka">Color ka:</label>
+        <input type="color" value="#000033" id="color-picker-ka" />
+
+
+        <label for="color-picker-kd">Color kd:</label>
+        <input type="color" value="#cccccc" id="color-picker-kd" />
+
+
+    </div>
+    <canvas id="gl-canvas" width="512" height="512" style="border: 1px solid black;">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+
+</html>
