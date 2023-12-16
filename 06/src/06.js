@@ -189,6 +189,7 @@ window.onload = function init() {
 
     u_view = gl.getUniformLocation(program, "u_view");
     u_projection = gl.getUniformLocation(program, "u_projection");
+
     initControls();
     
         render();
@@ -266,7 +267,6 @@ function render() {
         mat_projection = ortho(frustum_params.l, frustum_params.r, frustum_params.t, frustum_params.b, frustum_params.n, frustum_params.f);
     } else {
         mat_projection = perspective(frustum_params.fov_deg, 1.0, frustum_params.n, frustum_params.f);
-
     }
 
     gl.uniformMatrix4fv(u_model, false, flatten(mat_model));
@@ -347,6 +347,7 @@ function lookAt(eye, at, up) {
          up[2] * zaxis[0] - up[0] * zaxis[2],
          up[0] * zaxis[1] - up[1] * zaxis[0]
      ];
+
      const xaxisLength = Math.sqrt(xaxis[0] * xaxis[0] + xaxis[1] * xaxis[1] + xaxis[2] * xaxis[2]);
      xaxis[0] /= xaxisLength;
      xaxis[1] /= xaxisLength;
@@ -358,7 +359,17 @@ function lookAt(eye, at, up) {
          xaxis[2] * zaxis[0] - xaxis[0] * zaxis[2],
          xaxis[0] * zaxis[1] - xaxis[1] * zaxis[0]
      ];
- 
+
+    /////////********************** */
+
+//   const yaxisLength = Math.sqrt(yaxis[0] * yaxis[0] + yaxis[1] * yaxis[1] + yaxis[2] * yaxis[2]);
+//   yaxis[0] /= yaxisLength;
+//   yaxis[1] /= yaxisLength;
+//   yaxis[2] /= yaxisLength;
+
+
+    ////////*************/ */
+
      // Negate zaxis
      zaxis[0] = -zaxis[0];
      zaxis[1] = -zaxis[1];
