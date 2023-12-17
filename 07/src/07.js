@@ -85,8 +85,10 @@ window.onload = function init() {
 
 
     //TODO: Declare usiform u_light_position, u_light_color, u_ka and u_kd
-
-
+    u_light_position = gl.getUniformLocation(program, "u_light_position");
+    u_light_color = gl.getUniformLocation(program, "u_light_color");
+    u_ka = gl.getUniformLocation(program, "u_ka");
+    u_kd = gl.getUniformLocation(program, "u_kd");
 
     initControls();
 
@@ -147,6 +149,12 @@ function render() {
     gl.uniformMatrix4fv(u_model, false, flatten(mat_model));
 
     // TODO: Pass the light position and light color as uniforms to the shader.
+    gl.uniform3fv(u_light_position, light_position);
+    gl.uniform3fv(u_light_color, color_light);
+    
+    // Pass the values of k_a and k_d to the shader
+    gl.uniform3fv(u_ka, ka);
+    gl.uniform3fv(u_kd, kd);
 
 
     gl.drawElements(gl.TRIANGLES, mesh.indexBuffer.numItems, gl.UNSIGNED_INT , 0);

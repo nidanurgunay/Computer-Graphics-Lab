@@ -186,7 +186,8 @@ window.onload = function init() {
 
     u_model = gl.getUniformLocation(program, "u_model");
     //TODO: Get the unform locations of the view and projection matrix from the shader and bind them to the variables u_projection and u_view
-
+    u_view = gl.getUniformLocation(program, "u_view");
+    u_projection = gl.getUniformLocation(program, "u_projection");
     
     initControls();
     
@@ -263,14 +264,17 @@ function render() {
     if (is_orthographic) {
         // orthographic projection matrix
         mat_projection = ortho(frustum_params.l, frustum_params.r, frustum_params.t, frustum_params.b, frustum_params.n, frustum_params.f);
+
     } else {
         mat_projection = perspective(frustum_params.fov_deg, 1.0, frustum_params.n, frustum_params.f);
 
     }
 
     gl.uniformMatrix4fv(u_model, false, flatten(mat_model));
-    //TODO: Pass also the projection and view matrid to the vertex shader
-   
+    //TODO: Pass also the projection and view matrix to the vertex shader
+    gl.uniformMatrix4fv(u_view, false, flatten(mat_view));
+    console.log(mat_view);
+    gl.uniformMatrix4fv(u_projection, false, flatten(mat_projection));
 
     gl.drawArrays(gl.TRIANGLES, 0, 36);
 
@@ -293,18 +297,33 @@ function rotateY(angle_deg){
 
 }
 
-function ortho(left, right, top, bottom, near, far) {
-    //TODO: Implement this function based on the description of the orthograpic projection.
-
-    const ortho_mat = mat4();
-    return ortho_mat
+function ortho(left, right, bottom, top, near, far) {
+    const ortho_mat = mat4(
+        2 / (right - left), 0, 0, -(right + left) / (right - left),
+        0, 2 / (top - bottom), 0, -(top + bottom) / (top - bottom),
+        0, 0, -2 / (far - near), -(near + far) / (near - far),
+        0, 0, 0, 1
+    );
+    return ortho_mat;
 }
+
 
 function perspective(fovy_deg, aspect, near, far) {
     //TODO: Implement this function based on the description of the perspective projection.
+    t = Math.tan(fovy_deg/2) * near;
+    let b = -near;
+    let r = t*aspect
+    let l = b*aspect
 
     let perspective_mat = mat4();
-   
+    perspective_mat = mat4(
+        2*near/(r-l),0,(r+l)/(r-l),0,
+        0, 2*near/(t-b),(t+b)/(t-b),0,
+        0,0,-(far+near)/(far-near),-2*(far*near)/(far-near),
+        0,0,-1,0
+
+
+    )
 
     return perspective_mat
 
@@ -314,7 +333,56 @@ function lookAt(eye, at, up) {
 
    //TODO: Implement this function based on the description of the LookAt function in the book or in the website given in the task description.
 
-    return mat4();
+       // Calculate zaxis
+       const zaxis = [
+        at[0] - eye[0],
+        at[1] - eye[1],
+        at[2] - eye[2]
+    ];
+    const zaxisLength = Math.sqrt(zaxis[0] * zaxis[0] + zaxis[1] * zaxis[1] + zaxis[2] * zaxis[2]);
+    zaxis[0] /= zaxisLength;
+    zaxis[1] /= zaxisLength;
+    zaxis[2] /= zaxisLength;
+
+    // Calculate xaxis
+    const xaxis = [
+        up[1] * zaxis[2] - up[2] * zaxis[1],
+        up[2] * zaxis[0] - up[0] * zaxis[2],
+        up[0] * zaxis[1] - up[1] * zaxis[0]
+    ];
+    const xaxisLength = Math.sqrt(xaxis[0] * xaxis[0] + xaxis[1] * xaxis[1] + xaxis[2] * xaxis[2]);
+    xaxis[0] /= xaxisLength;
+    xaxis[1] /= xaxisLength;
+    xaxis[2] /= xaxisLength;
+
+    // Calculate yaxis
+    const yaxis = [
+        xaxis[1] * zaxis[2] - xaxis[2] * zaxis[1],
+        xaxis[2] * zaxis[0] - xaxis[0] * zaxis[2],
+        xaxis[0] * zaxis[1] - xaxis[1] * zaxis[0]
+    ];
+
+    // Negate zaxis
+    zaxis[0] = -zaxis[0];
+    zaxis[1] = -zaxis[1];
+    zaxis[2] = -zaxis[2];
+
+/*
+   const viewMatrix = mat4.fromValues(
+       xaxis[0], yaxis[0], zaxis[0], 0,
+       xaxis[1], yaxis[1], zaxis[1], 0,
+       xaxis[2], yaxis[2], zaxis[2], 0,
+       -vec3.dot(xaxis, eye), -vec3.dot(yaxis, eye), -vec3.dot(zaxis, eye), 1
+   );
+*/
+    const viewMatrix = mat4(
+        xaxis[0], yaxis[0], zaxis[0], -(xaxis[0] * eye[0] + yaxis[0] * eye[1] + zaxis[0] * eye[2]),
+        xaxis[1], yaxis[1], zaxis[1], -(xaxis[1] * eye[0] + yaxis[1] * eye[1] + zaxis[1] * eye[2]),
+        xaxis[2], yaxis[2], zaxis[2], -(xaxis[2] * eye[0] + yaxis[2] * eye[1] + zaxis[2] * eye[2]),
+        0, 0, 0, 1
+    );
+
+   return viewMatrix;
 }
 
 

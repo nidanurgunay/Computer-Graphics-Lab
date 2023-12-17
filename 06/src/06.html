@@ -13,7 +13,8 @@ in vec4 in_color;
 uniform mat4 u_model;
 
 //TODO: Define uniform variables for the view and projection matrix
-        
+uniform mat4 u_view;  // Add view matrix uniform
+uniform mat4 u_projection;  // Add projection matrix uniform
 out vec4 vColor;
 
 
@@ -21,7 +22,9 @@ out vec4 vColor;
 void main() {
     vColor = in_color;
     //TODO: Apply the model, view and projection matrix in the correct order to the vertex position.
-    gl_Position =  u_model * vec4(in_position, 1.0);
+    //gl_Position =  u_model * vec4(in_position, 1.0);
+    gl_Position = u_projection * u_view * u_model * vec4(in_position, 1.0);
+
     gl_PointSize = 10.0;
 }
         

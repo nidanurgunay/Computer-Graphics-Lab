@@ -15,7 +15,11 @@ in highp vec3 in_normal;
 uniform mat4 u_model;
 
 //get the uniform vec3 k_a, k_d, u_light_color and light position
-        
+uniform vec3 u_ka;
+uniform vec3 u_kd;
+uniform vec3 u_light_color;
+uniform vec3 u_light_position;
+
 flat out highp vec3 color;
 
         
@@ -23,15 +27,26 @@ void main() {
     //TODO: Apply the model martrix to normal (just for this exercise, in subsequent exercises it will be more involved)
 
     highp vec3 position = (u_model * vec4(in_position,1.0)).xyz;
+
+    highp vec3 normal = normalize(mat3(u_model) * in_normal);
+
     gl_Position =  vec4(position,1.0);
 
     //TODO: Calculate vector L from position to light source and normalize it 
+    highp vec3 lightDirection = normalize(u_light_position - position);
+
     //TODO: Normalize the in_normal after application of the model matrix (N)
 
     //TODO: compute the light intensity d by the dot product between N and L. If it is negative set it to 0.
+    float intensity = max(dot(normal, lightDirection), 0.0);
+
     //TODO: calculate the diffuse and ambient lighting terms as described in the task.md
-    
-    color = vec3(0.0,0.0,0.0);
+    vec3 ambient = u_ka * u_light_color;
+    vec3 diffuse = u_kd * u_light_color * intensity;
+
+    color = ambient + diffuse;
+
+    //color = vec3(0.0,0.0,0.0);
 
 }
         

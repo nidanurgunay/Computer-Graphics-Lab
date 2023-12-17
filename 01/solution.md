@@ -1,4 +1,13 @@
 # Solution Exercise 1
+<<<<<<< HEAD
+Group: *Nidanur Günay, Yu Zeyuan*
+## Task 1
+1.Film industry, CG tech is widely used to render effects and scenes.
+2.Scientific research, for example the protein folding model and rendering
+3.Simulators, like flight simulator
+4.Games, real time rendering game engine
+5.Computer aided drawing, just as the project in Uni Konstanz
+=======
 Group: *Nidanur Günay, Zeyuan Yu*
 ## Task 1
 
@@ -7,5 +16,6 @@ Group: *Nidanur Günay, Zeyuan Yu*
 3. Architecture: Computer graphics are used in architecture to achieve a realistic simulation of the project.
 4. Movies: Computer Graphics are used in movies to have animated screens and render effects in order to increase reality.
 5. User Interfaces: Computer Graphics are used in UI to increase the usability and user experience of the software.
+>>>>>>> ac1aa327d02f36d9546e050c856eb2a7b159b67a
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!

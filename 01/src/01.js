@@ -3,8 +3,19 @@
 let canvas;
 let gl;
 
+<<<<<<< HEAD
+let positions = [-0.5, -0.5, 0,
+                  0.5, -0.5, 0,
+                  0.0, 0.5, 0];
+let colors = [1.0, 0.0, 0.0,
+              0.0, 1.0, 0.0,
+              0.0, 0.0, 1.0];
+
+
+=======
 let positions = [-0.5, -0.5, 0, 0.5, -0.5, 0, 0.0, 0.5, 0];
 let colors = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0];
+>>>>>>> ac1aa327d02f36d9546e050c856eb2a7b159b67a
 
 window.onload = function init() {
   canvas = document.getElementById("gl-canvas");
@@ -38,6 +49,33 @@ window.onload = function init() {
   //Get location of attribute in shader program
   let positionLoc = gl.getAttribLocation(program, "in_position");
 
+<<<<<<< HEAD
+    //bind a given WebGLBuffer to a target
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    
+    //Pass the vertices to the buffer
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+    //Get location of attribute in shader program
+    let positionLoc = gl.getAttribLocation(program, "in_position");
+
+    //Specify the number of components in a vertex attribute
+    gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(positionLoc);
+
+    //color codes, basically the same as vertex code above
+    const colorBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    let in_color = gl.getAttribLocation(program, "in_color");
+    gl.vertexAttribPointer(in_color, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(in_color);
+
+
+
+
+    render();
+=======
   //Specify the number of components in a vertex attribute
   gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(positionLoc);
@@ -51,6 +89,7 @@ window.onload = function init() {
   gl.enableVertexAttribArray(in_color);
 
   render();
+>>>>>>> ac1aa327d02f36d9546e050c856eb2a7b159b67a
 };
 
 function render() {
