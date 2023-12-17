@@ -13,8 +13,7 @@ in vec4 in_color;
 uniform mat4 u_model;
 
 //TODO: Define uniform variables for the view and projection matrix
-uniform mat4 u_view;  // Add view matrix uniform
-uniform mat4 u_projection;  // Add projection matrix uniform
+        
 out vec4 vColor;
 
 
@@ -22,15 +21,7 @@ out vec4 vColor;
 void main() {
     vColor = in_color;
     //TODO: Apply the model, view and projection matrix in the correct order to the vertex position.
-<<<<<<< HEAD
-    //gl_Position =  u_model * vec4(in_position, 1.0);
-    gl_Position = u_projection * u_view * u_model * vec4(in_position, 1.0);
-
-=======
-    gl_Position = u_projection * u_view * u_model * vec4(in_position, 1.0);
-
-    gl_PointSize = 10.0;
->>>>>>> dcf6c66 (Yuzuen code implementation)
+    gl_Position =  u_model * vec4(in_position, 1.0);
     gl_PointSize = 10.0;
 }
         
@@ -63,40 +54,36 @@ main()
     <div>
         <fieldset>
             <legend>Camera Setings</legend>
-            Orthographic <input id="orthographic_checkbox" type="checkbox" checked />
-            Animate <input id="animate_checkbox" type="checkbox" checked />
+        Orthographic <input id="orthographic_checkbox" type="checkbox" checked/>
+        Animate <input id="animate_checkbox" type="checkbox" checked/>
         </fieldset>
-        <fieldset style="display: flex;">
-            <legend>Camera Position</legend>
+        <fieldset style="display: flex;">            <legend>Camera Position</legend>
 
             <div style="margin: 10px;">
-                <div>Camera X -10<input id="camera_x" type="range" min="-10" max="10" value="0" step="0.1" /> 10</div>
-                <div>Camera Y -10<input id="camera_y" type="range" min="-10" max="10" value="0" step="0.1" /> 10</div>
-                <div>Camera Z -10<input id="camera_z" type="range" min="-10" max="10" value="4" step="0.1" /> 10</div>
-            </div>
-            <div style="margin: 10px;">
-                <div>Look at X -10<input id="lookat_x" type="range" min="-10" max="10" value="0" step="0.1" /> 10</div>
-                <div>Look at Y -10<input id="lookat_y" type="range" min="-10" max="10" value="0" step="0.1" /> 10</div>
-                <div>Look at Z -10<input id="lookat_z" type="range" min="-10" max="10" value="0" step="0.1" /> 10</div>
-            </div>
-        </fieldset>
-        <div>
-            <fieldset>
-                <legend>Camera Frustum Settings</legend>
-                <div style="margin: 10px;">
-                    <div>FOV 1 <input id="fov" type="range" min="1" max="180" value="45" /> 180</div>
-
-                    <div>Near Clip 0.1 <input id="near_clip" type="range" min="0.1" max="50" value="0.1" step="0.1" />
-                        50</div>
-                    <div>Far Clip 1 <input id="far_clip" type="range" min="1" max="50" value="50" /> 50</div>
-                    <div>Left -10 <input id="frustum_l" type="range" min="-10" max="0" value="-1" step="0.1" /> 0</div>
-                    <div>Right 0 <input id="frustum_r" type="range" min="0" max="10" value="1" step="0.1" /> 10</div>
-                    <div>Top 0 <input id="frustum_t" type="range" min="0" max="10" value="1" step="0.1" /> 10</div>
-                    <div>Bottom -10 <input id="frustum_b" type="range" min="-10" max="0" value="-1" step="0.1" /> 0
-                    </div>
-                </div>
+            <div>Camera X -10<input id="camera_x" type="range" min="-10" max="10" value="0" step="0.1"/> 10</div>
+            <div>Camera Y -10<input id="camera_y" type="range" min="-10" max="10" value="0" step="0.1"/> 10</div>
+            <div>Camera Z -10<input id="camera_z" type="range" min="-10" max="10" value="4" step="0.1"/> 10</div>
+        </div>
+        <div style="margin: 10px;">
+            <div>Look at X -10<input id="lookat_x" type="range" min="-10" max="10" value="0" step="0.1"/> 10</div>
+            <div>Look at Y -10<input id="lookat_y" type="range" min="-10" max="10" value="0" step="0.1"/> 10</div>
+            <div>Look at Z -10<input id="lookat_z" type="range" min="-10" max="10" value="0" step="0.1"/> 10</div>
         </div>
         </fieldset>
+        <div>
+            <fieldset><legend>Camera Frustum Settings</legend>
+                <div style="margin: 10px;">
+                <div>FOV 1 <input id="fov" type="range" min="1" max="180" value="45"/> 180</div>
+                
+                <div>Near Clip 0.1 <input id="near_clip" type="range" min="0.1" max="50" value="0.1" step="0.1"/> 50</div>
+                <div>Far Clip 1 <input id="far_clip" type="range" min="1" max="50" value="50"/> 50</div>
+                <div>Left -10 <input id="frustum_l" type="range" min="-10" max="0" value="-1" step="0.1"/> 0</div>
+                <div>Right 0 <input id="frustum_r" type="range" min="0" max="10" value="1" step="0.1"/> 10</div>
+                <div>Top 0 <input id="frustum_t" type="range" min="0" max="10" value="1" step="0.1"/> 10</div>
+                <div>Bottom -10 <input id="frustum_b" type="range" min="-10" max="0" value="-1" step="0.1"/> 0</div>
+            </div>
+            </div>
+    </fieldset>
     </div>
     <canvas id="gl-canvas" width="512" height="512" style="border: 1px solid black;">
         Oops ... your browser doesn't support the HTML5 canvas element
