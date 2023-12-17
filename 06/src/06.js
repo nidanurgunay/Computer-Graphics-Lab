@@ -267,7 +267,6 @@ function render() {
 
     } else {
         mat_projection = perspective(frustum_params.fov_deg, 1.0, frustum_params.n, frustum_params.f);
-
     }
 
     gl.uniformMatrix4fv(u_model, false, flatten(mat_model));
