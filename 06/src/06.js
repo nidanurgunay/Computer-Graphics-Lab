@@ -314,6 +314,7 @@ function perspective(fovy_deg, aspect, near, far) {
     let r = t*aspect
     let l = b*aspect
 
+
     let perspective_mat = mat4();
     perspective_mat = mat4(
         2*near/(r-l),0,(r+l)/(r-l),0,
