@@ -326,9 +326,7 @@ function perspective(fovy_deg, aspect, near, far) {
     )
 
     return perspective_mat
-
 }
-
 function lookAt(eye, at, up) {
 
    //TODO: Implement this function based on the description of the LookAt function in the book or in the website given in the task description.
