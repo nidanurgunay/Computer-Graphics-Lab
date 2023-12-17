@@ -1,7 +1,37 @@
 # Solution Exercise 5
-Group: *Name of Group Member 1, Name of Group Member 2*
+Group: Nidanur Günay, Yu Zeyuan
 ## Task 1
-*Your solution here!*
+```math
+M_\text{per} = M_\text{orth} P
+```
+
+```math
+M_\text{orth}^{\prime} M_\text{per }  = M_\text{orth}^{\prime} M_\text{orth} P = P
+```
+
+```math
+M_\text{orth}^{\prime} = \begin{bmatrix}
+      \frac{r-l}{2} & 0 & 0 & \frac{r+l}{2} \\
+      0 & \frac{t-b}{2} & 0 & \frac{t+b}{2} \\
+      0 & 0 & -\frac{f-n}{2} & -\frac{n+f}{2} \\
+      0 & 0 & 0 & 1
+    \end{bmatrix}
+
+
+```
+
+
+```math
+
+P = M_\text{orth}^{\prime} M_\text{per }  =  \begin{bmatrix}
+  n& 0 & 0 & 0\\
+      0 & n & 0 & 0\\
+      0 & 0 & f + n  & fn \\
+      0 & 0 & -1 & 0
+    \end{bmatrix}
+
+
+```
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
 
