@@ -11,7 +11,9 @@ In this task you have to implement flat shading. You will just see a not shaded 
 
 Since complex material properties cannot be easily reproduced in real-time computer graphics, they are usually approximated using the light reflection parameters $k_a$ $k_d$​. These stand for the different light properties Ambient and Diffuse.
 
-$Color = k_a*I + k_d*(N \cdot L)*I$
+```math
+Color = k_a*I + k_d*(N \cdot L)*I
+```
 
 with $N$=Vertex normal; $L$=Light direction; We only use one light source with color and intensity $I$.
 
