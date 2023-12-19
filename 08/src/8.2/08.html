@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Blinn-Phong</title>
+
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+in highp vec3 in_position;
+in highp vec3 in_normal;
+
+uniform mat4 u_model;
+uniform mat4 u_view;
+uniform mat4 u_projection;
+uniform mat3 u_normal;
+
+out highp vec3 position;
+out highp vec3 normal;
+
+
+        
+void main() {
+    //TODO: Apply the normal matrix to the normal and only the model matrix to in_position. The result is now transfomed to world space.
+    //TODO: Emmit one normal and poistion per vertex. 
+    gl_Position =  u_projection * u_view * u_model * vec4(in_position, 1.0);
+}
+        
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+
+out highp vec4 out_color;
+        
+uniform highp vec3 u_eye;
+uniform highp vec3 u_light_position;
+uniform highp vec3 u_light_color;
+uniform highp float u_shininess;
+uniform highp vec3 u_ka;
+uniform highp vec3 u_kd;
+uniform highp vec3 u_ks;
+
+in highp vec3 position;
+in highp vec3 normal;
+
+        
+void main() {
+
+    //TODO: Perform here your lighting calculation.
+
+    out_color = vec4(0,0,0, 1.0);
+}
+</script>
+<script type="text/javascript" src="resources/bunny.js"></script>
+<script type="text/javascript" src="resources/cube.js"></script>
+<script type="text/javascript" src="resources/suzanne.js"></script>
+<script type="text/javascript" src="resources/spot.js"></script>
+
+<script type="text/javascript" src="obj_loader/webgl-obj-loader.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MVnew.js"></script>
+    <script type="text/javascript" src="08.js"></script>
+    </object>
+</head>
+
+<body>
+    <div>
+        Orthographic <input id="orthographic_checkbox" type="checkbox" checked/>
+        Animate <input id="animate_checkbox" type="checkbox" checked/>
+        FOV 1 <input id="fov" type="range" min="1" max="180" value="45"/> 180
+        
+        <label for="shiny">Shiny:</label>
+        1 <input id="shiny" type="range" min="1" max="255" value="128"/> 255
+        <label for="color-picker-light">Light Color:</label>
+        <input type="color" value="#ffffff" id="color-picker-light" />
+
+        <label for="color-picker-ka">Color ka:</label>
+        <input type="color" value="#000033" id="color-picker-ka" />
+
+        <label for="color-picker-ks">Color ks:</label>
+        <input type="color" value="#80e699" id="color-picker-ks" />
+
+        <label for="color-picker-kd">Color kd:</label>
+        <input type="color" value="#cccccc" id="color-picker-kd" />
+
+
+    </div>
+    <canvas id="gl-canvas" width="512" height="512" style="border: 1px solid black;">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+
+</html>
