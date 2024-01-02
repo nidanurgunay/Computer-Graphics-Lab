@@ -25,7 +25,14 @@ out highp vec3 normal;
 void main() {
     //TODO: Apply the normal matrix to the normal and only the model matrix to in_position. The result is now transfomed to world space.
     //TODO: Emmit one normal and poistion per vertex. 
-    gl_Position =  u_projection * u_view * u_model * vec4(in_position, 1.0);
+    // Transform position to clip space
+    gl_Position = u_projection * u_view * u_model * vec4(in_position, 1.0);
+
+    // Transform normal to world space (without translation) using the normal matrix
+    normal = normalize(u_normal * in_normal);
+
+    // Transform position to view space for lighting calculations
+    position = vec3(u_view * u_model * vec4(in_position, 1.0));
 }
         
 </script>
@@ -51,7 +58,19 @@ void main() {
 
     //TODO: Perform here your lighting calculation.
 
-    out_color = vec4(0,0,0, 1.0);
+    highp vec3 ambient = u_ka * u_light_color;
+
+    highp vec3 lightDir = normalize(u_light_position - position);
+    highp float diff = max(dot(normalize(normal), lightDir), 0.0);
+    highp vec3 diffuse = u_kd * u_light_color * diff;
+
+    highp vec3 viewDir = normalize(u_eye - position);
+    highp vec3 reflectDir = reflect(-lightDir, normalize(normal));
+    highp float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_shininess);
+    highp vec3 specular = u_ks * u_light_color * spec;
+
+    highp vec3 phong = ambient + diffuse + specular;
+    out_color = vec4(phong, 1.0);
 }
 </script>
 <script type="text/javascript" src="resources/bunny.js"></script>
