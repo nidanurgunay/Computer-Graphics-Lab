@@ -209,7 +209,14 @@ function render() {
 
     //TODO: pass u_eye, u_light_position, u_light_color, u_ka, u_ks, u_kd, u_shininess as uniforms to the shader
 
-    
+    gl.uniform3fv(u_eye, eye);
+    gl.uniform3fv(u_light_position, light_position);
+    gl.uniform3fv(u_light_color, color_light);
+    gl.uniform3fv(u_ka, ka);
+    gl.uniform3fv(u_ks, ks);
+    gl.uniform3fv(u_kd, kd);
+    gl.uniform3fv(u_shininess, shiny);
+
     gl.drawElements(gl.TRIANGLES, mesh.indexBuffer.numItems, gl.UNSIGNED_INT , 0);
 
     angle += rotationSpeed;
