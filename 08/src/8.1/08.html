@@ -42,12 +42,8 @@ void main() {
     highp vec3 reflect_direction = reflect(-light_direction, world_normal);
 
 
-    //highp float specular = pow(max(dot(u_eye, reflect_direction), 0.0), u_shininess);
-
-
-
-    highp float specular = pow(max(dot(u_eye, reflect_direction), 0.0), u_shininess / 255.0);
-
+    highp vec3 view_direction = normalize(u_eye - world_position);
+    highp float specular = pow(max(dot(reflect_direction, view_direction), 0.0), (u_shininess*0.1f)+1.0f);
 
     // Combine ambient, diffuse, and specular lighting
     color = u_ka + u_kd * diffuse + u_ks * specular * u_light_color;
@@ -55,7 +51,6 @@ void main() {
     // Transform to clip space
     gl_Position = u_projection * u_view * vec4(world_position, 1.0);
 
-    //gl_Position =  u_projection * u_view * u_model * vec4(in_position, 1.0);
 }
         
 </script>

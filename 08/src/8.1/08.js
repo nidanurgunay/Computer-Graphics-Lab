@@ -24,7 +24,7 @@ const ka = vec3(0.0, 0.0, 0.2)
 const color_light = vec3(1.0,1.0,1.0)
 const light_position = vec3(2.0,1.0,2.0)
 
-let shiny = 128.0;
+let shiny = 5.0;
 
 let theta = 0
 let rotationSpeed = 10e-3
