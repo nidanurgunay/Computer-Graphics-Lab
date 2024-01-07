@@ -24,7 +24,7 @@ const ka = vec3(0.0, 0.0, 0.2)
 const color_light = vec3(1.0,1.0,1.0)
 const light_position = vec3(2.0,1.0,2.0)
 
-let shiny = 128.0;
+let shiny = 5.0;
 
 let theta = 0
 let rotationSpeed = 10e-3
@@ -208,8 +208,15 @@ function render() {
     gl.uniformMatrix4fv(u_projection, false, flatten(mat_projection));
 
     //TODO: pass u_eye, u_light_position, u_light_color, u_ka, u_ks, u_kd, u_shininess as uniforms to the shader
-
+    gl.uniform3fv(u_eye, flatten(eye));
+    gl.uniform3fv(u_light_position, light_position);
+    gl.uniform3fv(u_light_color, color_light);
+    gl.uniform1f(u_shininess, shiny);
+    gl.uniform3fv(u_ka, (ka));
+    gl.uniform3fv(u_kd, (kd));
+    gl.uniform3fv(u_ks, (ks));
     
+
     gl.drawElements(gl.TRIANGLES, mesh.indexBuffer.numItems, gl.UNSIGNED_INT , 0);
 
     angle += rotationSpeed;

@@ -31,8 +31,26 @@ out highp vec3 color;
         
 void main() {
     //TODO: Apply the normal matrix to the normal and only the model matrix to in_position. The result is now transfomed to world space. Use it for your lighting calculation.
+    highp vec3 world_position = vec3(u_model * vec4(in_position, 1.0));
+    highp vec3 world_normal = normalize(u_normal * in_normal);    
+    
+    
+    
     //TODO: Emmit one color per vertex. 
-    gl_Position =  u_projection * u_view * u_model * vec4(in_position, 1.0);
+    highp vec3 light_direction = normalize(u_light_position - world_position);
+    highp float diffuse = max(dot(world_normal, light_direction), 0.0);
+    highp vec3 reflect_direction = reflect(-light_direction, world_normal);
+
+
+    highp vec3 view_direction = normalize(u_eye - world_position);
+    highp float specular = pow(max(dot(reflect_direction, view_direction), 0.0), (u_shininess*0.1f)+1.0f);
+
+    // Combine ambient, diffuse, and specular lighting
+    color = u_ka + u_kd * diffuse + u_ks * specular * u_light_color;
+
+    // Transform to clip space
+    gl_Position = u_projection * u_view * vec4(world_position, 1.0);
+
 }
         
 </script>
