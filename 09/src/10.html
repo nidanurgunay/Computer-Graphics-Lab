@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Texture Mapping</title>
+
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+precision highp float;
+
+in highp vec3 in_normal;
+in highp vec3 in_position;
+in highp vec2 in_texcoord;
+
+
+uniform mat4 u_model;
+uniform mat4 u_view;
+uniform mat4 u_projection;
+        
+out highp vec4 position;
+out highp vec3 normal;
+out highp vec2 texcoord;
+
+        
+void main() {
+    normal = mat3(transpose(inverse(u_model)))*in_normal;
+    position = u_model *  vec4(in_position, 1.0);
+    texcoord = in_texcoord;
+    gl_Position =  u_projection * u_view *u_model*  vec4(in_position, 1.0);
+}
+        
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+
+out mediump vec4 out_color;
+        
+// The texture.
+uniform sampler2D u_texture_stone;
+uniform sampler2D u_texture_grass;
+uniform sampler2D u_texture_snow;
+uniform highp float max_height;
+uniform highp float snow_line;
+
+in highp vec4 position;
+in highp vec2 texcoord;
+in highp vec3 normal;
+
+        
+void main() {
+    highp vec3 up = vec3(0,1,0);
+
+    // TODO get all 3 texture colors for the interpolated texturecoordinates of this fragment
+
+    // TODO create the basecase - grass to stone ratio based on hight.
+
+    highp float angle = 0.0;
+
+    // TODO calculate the angle of the unit up vector (0, 1, 0) and the interpolated normalvector using the acos() of the normalized dot product of the two
+
+    // TODO if the angle is in a medium steepness range, we want to mix the colors values based on the steepness
+    if(angle >= radians(30.0) && angle <= radians(45.0)){
+        highp float interpolate_value = (angle - radians(30.0)) /radians((45.0-30.0));
+
+        // do the color interploation using the interpolate_value variable
+    }
+
+    // TODO if the angle is steeper than covered by the preceding case we want the color to just be the stone texture at this texture position
+
+
+    // TODO if the current y position is higher than the defined snowline our color should be based on the snowtexture. 
+    // You can do this for example by calculating at what percentage of the maximum elevation this fragment is and checking whether it is below the snowline or not.
+
+    out_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+}
+</script>
+<script type="text/javascript" src="resources/terrain.js"></script>
+<script type="text/javascript" src="resources/textures.js"></script>
+
+<script type="text/javascript" src="obj_loader/webgl-obj-loader.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MVnew.js"></script>
+    <script type="text/javascript" src="10.js"></script>
+    </object>
+</head>
+
+<body>
+    <div>
+        Orthographic <input id="orthographic_checkbox" type="checkbox" checked/>
+        Animate <input id="animate_checkbox" type="checkbox" checked/>
+        FOV 1 <input id="fov" type="range" min="1" max="180" value="45"/> 180
+    </div>
+    <canvas id="gl-canvas" width="1024" height="1024" style="border: 1px solid black;">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+
+</html>
