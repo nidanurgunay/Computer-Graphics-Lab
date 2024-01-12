@@ -17,8 +17,8 @@ cos^{-1} ( \alpha ) + cos^{-1} ( \varPhi ) = cos^{-1} ( \beta )
 
 Since normal vector would equally seperate the angle between the light and ideal reflection direction, we would have another equation
 
+Angle between H and R = $`cos^-1(\beta)`$ -  $`cos^-1(\gamma)`$ . 
 ```math
-angle between H and R = cos^{-1} ( \beta ) - cos^{-1} ( \gamma )
 
 cos^{-1} ( \alpha ) = cos^{-1} ( \beta ) - cos^{-1} ( \gamma ) + cos^{-1} ( \varPhi ) 
 
