@@ -9,6 +9,6 @@ We need to look for the angles between R and V for the Phong and H and N for the
 
 | Figure a) Hand-Drawings of reflections and angles.           |
 | ------------------------------------------------------------ |
-| ![Abbildung a)](resources/drawing_angles.png "Abbildung a)") |
+| ![Abbildung a)](resources/drawing_angles.jpg "Abbildung a)") |
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
