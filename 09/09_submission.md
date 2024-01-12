@@ -12,7 +12,7 @@ We need to look for the angles between R and V for the Phong and H and N for the
 Since H is the halfway vector between $`I`$ (direction to the light source) and $`V`$, we would have the equation of
 
 ```math
-cos^{-1} ( \alpha ) + cos^{-1} ( \varPhi ) = cos^{-1} ( \betha )
+cos^{-1} ( \alpha ) + cos^{-1} ( \varPhi ) = cos^{-1} ( \beta )
 ```
 
 ## Task 2
