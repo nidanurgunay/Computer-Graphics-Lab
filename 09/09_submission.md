@@ -25,5 +25,15 @@ cos^{-1} ( \alpha ) = cos^{-1} ( \beta ) - cos^{-1} ( \gamma ) + cos^{-1} ( \var
 ```math
 cos^{-1} ( \alpha ) + cos^{-1} ( \gamma ) = cos^{-1} ( \beta )  + cos^{-1} ( \varPhi ) 
 ```
+
+When we replace the $`cos^-1(\beta)`$ with the result of the first equation in the second one.
+
+```math
+cos^{-1} ( \alpha ) + cos^{-1} ( \gamma ) = cos^{-1} ( \alpha ) + cos^{-1} ( \varPhi )  + cos^{-1} ( \varPhi ) 
+```
+```math
+ cos^{-1} ( \gamma ) = 2 cos^{-1} ( \varPhi )  
+```
+
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
