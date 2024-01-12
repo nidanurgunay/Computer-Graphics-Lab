@@ -19,9 +19,10 @@ Since normal vector would equally seperate the angle between the light and ideal
 
 Angle between H and R = $`cos^-1(\beta)`$ -  $`cos^-1(\gamma)`$ . 
 ```math
-
 cos^{-1} ( \alpha ) = cos^{-1} ( \beta ) - cos^{-1} ( \gamma ) + cos^{-1} ( \varPhi ) 
+```
 
+```math
 cos^{-1} ( \alpha ) + cos^{-1} ( \gamma ) = cos^{-1} ( \beta )  + cos^{-1} ( \varPhi ) 
 ```
 ## Task 2
