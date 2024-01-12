@@ -66,7 +66,7 @@ void main() {
     // TODO calculate the angle of the unit up vector (0, 1, 0) and the interpolated normalvector using the acos() of the normalized dot product of the two
     highp float angle = acos(dot(normalize(up), normalize(normal)));
 
-    if(angle < radians(30.0)){out_color = color_grass;}
+    if(angle >= radians(0.2)&&angle < radians(30.0)){out_color = color_grass;}
     // TODO if the angle is in a medium steepness range, we want to mix the colors values based on the steepness
     if(angle >= radians(30.0) && angle <= radians(45.0)){
         highp float interpolate_value = (angle - radians(30.0)) /radians((45.0-30.0));
