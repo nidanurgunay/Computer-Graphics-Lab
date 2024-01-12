@@ -5,6 +5,6 @@ When we analyse 2 brightness methods, we can easily see the main difference whic
 ```math
 A \cdot B = ∥A∥ \cdot ∥B∥ \cdot cos( \theta )
 ```
-We need to look for the angles between R and V for the Phong and H and N for the Blinn-Phong reflection models which are $`cos^-1(\gamma)`$ and (\varPhi)`$. 
+We need to look for the angles between R and V for the Phong and H and N for the Blinn-Phong reflection models which are $`cos^-1(\gamma)`$ and  $`cos^-1(\varPhi)`$ . 
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
