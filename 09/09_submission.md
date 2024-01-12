@@ -1,6 +1,10 @@
 # Solution Exercise 9
-Group: *Name of Group Member 1, Name of Group Member 2*
+Group: *Nidanur Günay, Yu zeyuan*
 ## Task 1
-*Your solution here!*
+When we analyse 2 brightness methods, we can easily see the main difference which is the vectors that is being used for the dot product. Since dot product operation mathematically means
+```math
+A \cdot B = ∥A∥ \cdot ∥B∥ \cdot cos( \theta )
+```
+We need to look for the angles between R and V for the Phong and H and N for the Blinn-Phong reflection models which are $`cos^-1(\gamma)`$ and (\varPhi)`$. 
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
