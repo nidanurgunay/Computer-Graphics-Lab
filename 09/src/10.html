@@ -54,27 +54,37 @@ void main() {
     highp vec3 up = vec3(0,1,0);
 
     // TODO get all 3 texture colors for the interpolated texturecoordinates of this fragment
+    highp vec4 color_stone = texture(u_texture_stone, texcoord);
+    highp vec4 color_grass = texture(u_texture_grass, texcoord);
+    highp vec4 color_snow = texture(u_texture_snow, texcoord);
 
     // TODO create the basecase - grass to stone ratio based on hight.
+    highp float height_ratio = clamp((position.y / max_height), 0.0, 1.0);
 
-    highp float angle = 0.0;
+    //highp float angle = 0.0;
 
     // TODO calculate the angle of the unit up vector (0, 1, 0) and the interpolated normalvector using the acos() of the normalized dot product of the two
+    highp float angle = acos(dot(normalize(up), normalize(normal)));
 
+    if(angle < radians(30.0)){out_color = color_grass;}
     // TODO if the angle is in a medium steepness range, we want to mix the colors values based on the steepness
     if(angle >= radians(30.0) && angle <= radians(45.0)){
         highp float interpolate_value = (angle - radians(30.0)) /radians((45.0-30.0));
-
+        out_color = mix(color_grass, color_stone, interpolate_value);
         // do the color interploation using the interpolate_value variable
     }
 
     // TODO if the angle is steeper than covered by the preceding case we want the color to just be the stone texture at this texture position
-
+    if (angle > radians(45.0)) {
+        out_color = color_stone;
+    }
 
     // TODO if the current y position is higher than the defined snowline our color should be based on the snowtexture. 
     // You can do this for example by calculating at what percentage of the maximum elevation this fragment is and checking whether it is below the snowline or not.
+    highp float snow_percentage = clamp((position.y / max_height - snow_line) / (1.0 - snow_line), 0.0, 1.0);
+    out_color = mix(out_color, color_snow, snow_percentage);
 
-    out_color = vec4(0.0, 0.0, 0.0, 1.0);
+    //out_color = vec4(0.0, 0.0, 0.0, 1.0);
 
 }
 </script>

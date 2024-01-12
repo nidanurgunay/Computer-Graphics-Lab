@@ -145,22 +145,41 @@ window.onload = function init() {
     u_snow_line = gl.getUniformLocation(program, "snow_line");
 
     // TODO create textures and get the locations of the corresponding texture variables in the shaders using gl.getUniformLocation() and gl.createTexture()
+    // Create texture objects
+    texture_stone = gl.createTexture();
+    texture_grass = gl.createTexture();
+    texture_snow = gl.createTexture();
 
+    // Get the locations of texture variables in the shaders
+    u_texture_stone = gl.getUniformLocation(program, "u_texture_stone");
+    u_texture_grass = gl.getUniformLocation(program, "u_texture_grass");
+    u_texture_snow = gl.getUniformLocation(program, "u_texture_snow");
 
     // TODO activate the texture slots in WebGL and bind the textures to them using the following set of commands: - NOTE - Beware that you need to activate the correct active texture before binding the next one!
     /*
-        gl.activeTexture(gl.TEXTURE0); - NOTE - Applies here
+        gl.activeTexture(gl.TEXTURE0); //- NOTE - Applies here
         gl.bindTexture(gl.TEXTURE_2D, texture_material);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,gl.UNSIGNED_BYTE, image_material);
         gl.generateMipmap(gl.TEXTURE_2D);
+*/
 
-    */
+
+
+
+
+
+
 
     let image_stone = new Image();
     image_stone.src = window.cgmi.stone
 
     image_stone.addEventListener('load', function() {
         //TODO above
+            // Activate and bind the stone texture
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, texture_stone);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image_stone);
+        gl.generateMipmap(gl.TEXTURE_2D);
     });
 
     let image_grass = new Image();
@@ -169,6 +188,11 @@ window.onload = function init() {
 
     image_grass.addEventListener('load', function() {
         //TODO above
+            // Activate and bind the grass texture
+    gl.activeTexture(gl.TEXTURE1);
+    gl.bindTexture(gl.TEXTURE_2D, texture_grass);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image_grass);
+    gl.generateMipmap(gl.TEXTURE_2D);
     });
 
     let image_snow = new Image();
@@ -177,7 +201,18 @@ window.onload = function init() {
 
     image_snow.addEventListener('load', function() {
         //TODO above
+    // Activate and bind the snow texture
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, texture_snow);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image_snow);
+    gl.generateMipmap(gl.TEXTURE_2D);
     });
+
+
+        // Pass texture units to shader uniforms
+    gl.uniform1i(u_texture_stone, 0);
+    gl.uniform1i(u_texture_grass, 1);
+    gl.uniform1i(u_texture_snow, 2);
 
     initControls();
 
@@ -247,6 +282,22 @@ function render() {
     gl.uniform1i(u_texture_material, 0); - NOTE - Applies here
     
     */
+   
+    // Activate and bind the stone texture
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture_stone);
+    gl.uniform1i(u_texture_stone, 0);
+
+    // Activate and bind the grass texture
+    gl.activeTexture(gl.TEXTURE1);
+    gl.bindTexture(gl.TEXTURE_2D, texture_grass);
+    gl.uniform1i(u_texture_grass, 1);
+
+    // Activate and bind the snow texture
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, texture_snow);
+    gl.uniform1i(u_texture_snow, 2);
+
 
     gl.drawElements(gl.TRIANGLES, mesh.indexBuffer.numItems, gl.UNSIGNED_INT, 0);
 
