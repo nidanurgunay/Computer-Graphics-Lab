@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>HSV</title>
+
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+in highp vec3 in_position;
+in highp vec3 in_normal;
+
+uniform mat4 u_model;
+uniform mat4 u_view;
+uniform mat4 u_projection;
+uniform mat3 u_normal;
+        
+out highp vec3 position;
+out highp vec3 normal;
+
+
+        
+void main() {
+    normal = u_normal * in_normal;
+    position = (u_model * vec4(in_position,1)).xyz;
+    gl_Position =  u_projection * u_view * u_model * vec4(in_position, 1.0);
+}
+        
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+
+out highp vec4 out_color;
+        
+uniform highp vec3 u_eye;
+uniform highp vec3 u_light_position;
+uniform highp vec3 u_light_color;
+uniform highp float u_shininess;
+uniform highp vec3 u_ka;
+uniform highp vec3 u_kd;
+uniform highp vec3 u_ks;
+
+uniform highp vec3 u_hsv_user_input;
+
+
+
+in highp vec3 position;
+in highp vec3 normal;
+
+
+        
+void main() {
+    highp vec3 N = normalize(normal);
+    highp vec3 V = normalize(u_eye - position);
+    highp vec3 L = normalize(u_light_position - position);
+    highp vec3 H = normalize(L + V);
+        
+    highp float d = max(0.0, dot(N, L));
+    highp float s = pow(max(dot(N, H), 0.0), u_shininess);
+        
+    highp vec3 ambient = u_ka * u_light_color;
+    highp vec3 diffuse = u_kd * u_light_color * d;
+    highp vec3 specular = u_ks * u_light_color * s;
+        
+    highp vec3 color = ambient + diffuse + specular;
+
+    
+    out_color = vec4(color, 1.0);
+}
+</script>
+<script type="text/javascript" src="resources/bunny.js"></script>
+<script type="text/javascript" src="resources/cube.js"></script>
+<script type="text/javascript" src="resources/suzanne.js"></script>
+<script type="text/javascript" src="resources/spot.js"></script>
+
+<script type="text/javascript" src="obj_loader/webgl-obj-loader.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MVnew.js"></script>
+    <script type="text/javascript" src="10.js"></script>
+    </object>
+</head>
+
+<body>
+    <div>
+        Orthographic <input id="orthographic_checkbox" type="checkbox" checked/>
+        Animate <input id="animate_checkbox" type="checkbox" checked/>
+        FOV 1 <input id="fov" type="range" min="1" max="180" value="45"/> 180
+        
+        <label for="shiny">Shiny:</label>
+        1 <input id="shiny" type="range" min="1" max="255" value="128"/> 255
+        <label for="color-picker-light">Light Color:</label>
+        <input type="color" value="#ffffff" id="color-picker-light" />
+
+        <label for="color-picker-ka">Color ka:</label>
+        <input type="color" value="#000033" id="color-picker-ka" />
+
+        <label for="color-picker-ks">Color ks:</label>
+        <input type="color" value="#80e699" id="color-picker-ks" />
+
+        <label for="color-picker-kd">Color kd:</label>
+        <input type="color" value="#cccccc" id="color-picker-kd" />
+
+        <label for="hsv_offset_h">HSV Offset H:</label>
+        0 <input id="hsv_offset_h" type="range" min="0" max="360" value="0"/> 360
+
+        <label for="hsv_offset_s">HSV Offset S:</label>
+        0 <input id="hsv_offset_s" type="range" min="0" max="1" value="0" step="0.01"/> 1
+
+        <label for="hsv_offset_v">HSV Offset V:</label>
+        0 <input id="hsv_offset_v" type="range" min="0" max="1" value="0"  step="0.01"/> 1
+
+
+    </div>
+    <canvas id="gl-canvas" width="512" height="512" style="border: 1px solid black;">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+
+</html>
