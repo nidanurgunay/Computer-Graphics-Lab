@@ -34,6 +34,6 @@ cos^{-1} ( \alpha ) + cos^{-1} ( \gamma ) = cos^{-1} ( \alpha ) + cos^{-1} ( \va
 ```math
  cos^{-1} ( \gamma ) = 2 cos^{-1} ( \varPhi )  
 ```
-
+Since the angle between surface normal and halway vector is half of the view and reflector vector, shineness factor should be set higher.
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
