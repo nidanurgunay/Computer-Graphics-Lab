@@ -50,7 +50,54 @@ uniform highp vec3 u_hsv_user_input;
 in highp vec3 position;
 in highp vec3 normal;
 
+// Function to convert RGB to HSV
+highp vec3 RGB2HSV(highp vec3 rgb) {
+    highp float cmax = max(max(rgb.r, rgb.g), rgb.b);
+    highp float cmin = min(min(rgb.r, rgb.g), rgb.b);
+    highp float delta = cmax - cmin;
 
+    highp float hue = 0.0;
+    if (delta > 0.0) {
+        if (cmax == rgb.r) {
+            hue = mod((rgb.g - rgb.b) / delta, 6.0);
+        } else if (cmax == rgb.g) {
+            hue = (rgb.b - rgb.r) / delta + 2.0;
+        } else {
+            hue = (rgb.r - rgb.g) / delta + 4.0;
+        }
+        hue *= 60.0;
+    }
+
+    highp float saturation = (cmax > 0.0) ? (delta / cmax) : 0.0;
+    highp float value = cmax;
+
+    return vec3(hue, saturation, value);
+}
+
+// Function to convert HSV to RGB
+highp vec3 HSV2RGB(highp vec3 hsv) {
+    highp float c = hsv.z * hsv.y;
+    highp float x = c * (1.0 - abs(mod(hsv.x / 60.0, 2.0) - 1.0));
+    highp float m = hsv.z - c;
+
+    highp vec3 rgb;
+
+    if (hsv.x >= 0.0 && hsv.x < 60.0) {
+        rgb = vec3(c, x, 0.0);
+    } else if (hsv.x >= 60.0 && hsv.x < 120.0) {
+        rgb = vec3(x, c, 0.0);
+    } else if (hsv.x >= 120.0 && hsv.x < 180.0) {
+        rgb = vec3(0.0, c, x);
+    } else if (hsv.x >= 180.0 && hsv.x < 240.0) {
+        rgb = vec3(0.0, x, c);
+    } else if (hsv.x >= 240.0 && hsv.x < 300.0) {
+        rgb = vec3(x, 0.0, c);
+    } else {
+        rgb = vec3(c, 0.0, x);
+    }
+
+    return rgb + vec3(m);
+}
         
 void main() {
     highp vec3 N = normalize(normal);
@@ -67,8 +114,16 @@ void main() {
         
     highp vec3 color = ambient + diffuse + specular;
 
-    
-    out_color = vec4(color, 1.0);
+    highp vec3 hsv_color = RGB2HSV(color.rgb);
+    // Modify the HSV values here based on user input
+    hsv_color.x += u_hsv_user_input.x; // Offset H
+    hsv_color.y = clamp(hsv_color.y + u_hsv_user_input.y, 0.0, 1.0); // Offset S
+    hsv_color.z = clamp(hsv_color.z + u_hsv_user_input.z, 0.0, 1.0); // Offset V
+
+    highp vec3 modified_rgb = HSV2RGB(hsv_color);
+
+    out_color = vec4(modified_rgb, 1.0);
+    //out_color = vec4(color, 1.0);
 }
 </script>
 <script type="text/javascript" src="resources/bunny.js"></script>
