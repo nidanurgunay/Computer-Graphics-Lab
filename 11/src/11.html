@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>HSV</title>
+
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+in highp vec3 in_position;
+in highp vec3 in_normal;
+
+uniform mat4 u_model;
+uniform mat4 u_view;
+uniform mat4 u_projection;
+uniform mat3 u_normal;
+
+        
+out highp vec3 position;
+out highp vec3 normal;
+
+
+        
+void main() {
+    normal = u_normal * in_normal;
+    position = (u_model * vec4(in_position,1)).xyz;
+    gl_Position =  u_projection * u_view * u_model * vec4(in_position, 1.0);
+}
+        
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+
+out highp vec4 out_color;
+        
+uniform highp vec3 u_eye;
+
+uniform highp vec3 u_light_position;
+uniform highp vec3 u_light_color;
+uniform highp float u_shininess;
+uniform highp vec3 u_ka;
+uniform highp vec3 u_kd;
+uniform highp vec3 u_ks;
+
+uniform int u_use_culling;
+
+uniform int u_use_wireframe;
+
+
+in highp vec3 position;
+in highp vec3 normal;
+
+
+        
+void main() {
+
+    
+
+        if(u_use_wireframe == 1){
+            out_color = vec4(0.4,0.4,0.4, 1.0);
+
+        }else{
+            highp vec3 N = normalize(normal);
+            highp vec3 V = normalize(u_eye - position);
+            highp vec3 L = normalize(u_light_position - position);
+            highp vec3 H = normalize(L + V);
+                
+            highp float d = max(0.0, dot(N, L));
+            highp float s = pow(max(dot(N, H), 0.0), u_shininess);
+                
+            highp vec3 ambient = u_ka * u_light_color;
+            highp vec3 diffuse = u_kd * u_light_color * d;
+            highp vec3 specular = u_ks * u_light_color * s;
+                
+            highp vec3 color = ambient + diffuse + specular;
+            out_color = vec4(color, 1.0);
+        
+
+        
+
+    }
+        
+}
+</script>
+<script type="text/javascript" src="resources/torus.js"></script>
+
+
+<script type="text/javascript" src="obj_loader/webgl-obj-loader.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MVnew.js"></script>
+    <script type="text/javascript" src="11.js"></script>
+    </object>
+</head>
+
+<body>
+    <div>
+        Orthographic <input id="orthographic_checkbox" type="checkbox"/>
+        Animate <input id="animate_checkbox" type="checkbox" checked/>
+        FOV 1 <input id="fov" type="range" min="1" max="180" value="45"/> 180
+        Culling <input id="culling_checkbox" type="checkbox"/>
+        Wireframe <input id="wireframe_checkbox" type="checkbox"/>
+
+        
+    </div>
+    <canvas id="gl-canvas" width="512" height="512" style="border: 1px solid black;">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+
+</html>
