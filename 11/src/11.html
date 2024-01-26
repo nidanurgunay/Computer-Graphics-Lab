@@ -56,7 +56,13 @@ in highp vec3 normal;
 
         
 void main() {
-
+    if(u_use_culling == 1){
+        highp vec3 V = normalize(u_eye - position);
+        highp float dot_product = dot(normal, V);
+        if(dot_product <= 0.0){
+            discard;
+        }
+    }
     
 
         if(u_use_wireframe == 1){
