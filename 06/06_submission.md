@@ -16,8 +16,6 @@ M_\text{orth}^{\prime} = \begin{bmatrix}
       0 & 0 & -\frac{f-n}{2} & -\frac{n+f}{2} \\
       0 & 0 & 0 & 1
     \end{bmatrix}
-
-
 ```
 
 
