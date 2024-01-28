@@ -9,6 +9,7 @@ Hence $`\vec{v}`$ can be represented as  $`(L(t) - {E_{n}} )`$ and  $`(L(t) - {E
 
 ```math
 (L(t) - {E_{n}})  \cdot \vec{n} = 0
+
 (P_{0} + t \cdot \vec{d} - {E_{n}})
 ```
 
