@@ -17,7 +17,7 @@ Hence $`\vec{v}`$ can be represented as  $`(L(t) - {E_{n}} )`$ and  $`(L(t) - {E
 t \cdot \vec{d} \cdot \vec{n} = ({E_{n}} - P_{0})  \cdot \vec{n}
 ```
 ```math
-(P_{0} + t \cdot \vec{d} - {E_{n}})
+t  = \cfrac{(({E_{n}} - P_{0})  \cdot \vec{n})}{\vec{d} \cdot \vec{n}}   
 ```
 ```math
 (P_{0} + t \cdot \vec{d} - {E_{n}})
