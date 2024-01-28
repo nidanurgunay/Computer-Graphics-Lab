@@ -9,10 +9,19 @@ Hence $`\vec{v}`$ can be represented as  $`(L(t) - {E_{n}} )`$ and  $`(L(t) - {E
 
 ```math
 (L(t) - {E_{n}})  \cdot \vec{n} = 0
-
+```
+```math
+(P_{0} + t \cdot \vec{d} - {E_{n}})  \cdot \vec{n} = 0
+```
+```math
+t \cdot \vec{d}  = ({E_{n}} - P_{0})  \cdot \vec{n}
+```
+```math
 (P_{0} + t \cdot \vec{d} - {E_{n}})
 ```
-
+```math
+(P_{0} + t \cdot \vec{d} - {E_{n}})
+```
 
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
