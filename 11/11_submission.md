@@ -26,7 +26,7 @@ t  = \cfrac{({E_{n}} - P_{0})  \cdot \vec{n}}{\vec{d} \cdot \vec{n}}
 Therefore,
 
 ```math
-{S_{i}} = P_{0} + \cfrac{({E_{n}} - P_{0})  \cdot \vec{n}}{\vec{d} \cdot \vec{n} \cdot  \vec{d}}   
+{S_{i}} = P_{0} + \cfrac{({E_{n}} - P_{0})  \cdot \vec{n}}{\vec{d} \cdot \vec{n}} \cdot  \vec{d}   
 ```
 
 
