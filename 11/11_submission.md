@@ -1,6 +1,10 @@
 # Solution Exercise 11
-Group: *Name of Group Member 1, Name of Group Member 2*
+Group: *Nidanur Günay, Yu zeyuan*
 ## Task 1
-*Your solution here!*
+Since $`S_{i}`$ is on the on the line, it would satisfy the equation of the line and could be represented as $`S_{i} = P_{0} + t \cdot \vec{d}`$ 
+Since $`\vec{n}`$ is orthogonal to the $`\vec{v}`$ , we know that  $`\vec{v}  \cdot \vec{v}` = 0$ 
+
+Hence $`\vec{v}`$ can be represented as  $`(L(t) - {E_{n}} )`$ 
+
 ## Task 2
 Please edit the HTML/JS files in the ``src`` folder!
