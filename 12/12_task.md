@@ -39,7 +39,7 @@ If we would use only linear functions in the neural network, our model would bec
 ```math
 \begin{bmatrix}
  19 &  25 \\
-37  &  43 
+ 37  &  43 
 \end{bmatrix}
 ```
 
