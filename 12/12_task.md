@@ -17,13 +17,13 @@ If we would use only linear functions in the neural network, our model would bec
    - Sigmoid 
    - GELU
 
-1. 
+2. 
     1. A CNN is a classical architecture used in ML for image data. Explain the difference between dense, fully connected networks and CNNs. (1P)
    In dense, fully connected networks, every neurons in one layer is connected to every neurons in the next levels.  However CNN architecture differs with convolutional layers which apply kernel to regions of the input images and then applying the pooling operation that result to down sampling to reduce spatial dimonsionality of input. The last layer, which is fully connected layer, connects all nodes from previous layer to this fully connected layer. This architecture would lead to decrease in number of connections between layers and fewer paramaters. Therefore, CNN are more efficient in comparison with dense- fully connected networks.
     2. Why aren't dense, fully connected networks typically used for image data? (1P)
    Hence image data is high-dimensional and often contains local patterns, dense, fully connected networks would be computtionally expensive due to treating each pixels as seperate input features. However, for inputs like images, spatial data would help to highlight the input features such as edges, textures, patterns.  Thanks to the convolutiopn and pooling layer of CNN architecture, it is able to capture local patterns, reduce parameter counts, and consider the spatial structure of the data. This would make the CNN architecture more effective and efficient for the tasks that has spatial data such as image classification, object detection or image segmentation.
 
-2. 
+3. 
     1. Apply kernel <img src="Kernel.PNG" alt="drawing" width="100"/> to the input <img src="Matrix.PNG" alt="drawing" width="150"/> with stride 1 and a padding with zeros to perform a convolution. (1P)
   ```math
 	\begin{bmatrix}
@@ -34,18 +34,18 @@ If we would use only linear functions in the neural network, our model would bec
 \end{bmatrix}
 ```
 
-    1. Apply a max pooling operation with a 2x2 kernel and stride 2 on the result of 3.1 (1P)
+    2. Apply a max pooling operation with a 2x2 kernel and stride 2 on the result of 3.1 (1P)
 
-    ```math
-	\begin{bmatrix}
-   19 &  25 \\
-    37  &  43 
+```math
+\begin{bmatrix}
+ 19 &  25 \\
+37  &  43 
 \end{bmatrix}
 ```
 
-3. Describe the principles of the generator and discriminator of a GAN. (1P)
-4. In Denoising Diffusion models, what does the network predict? (1P)
-5. Name and describe the two processes of Denoising Diffusion Models. (1P)
+4. Describe the principles of the generator and discriminator of a GAN. (1P)
+5. In Denoising Diffusion models, what does the network predict? (1P)
+6. Name and describe the two processes of Denoising Diffusion Models. (1P)
 
 Total: 10 points
 
