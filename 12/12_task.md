@@ -44,8 +44,31 @@ If we would use only linear functions in the neural network, our model would bec
 ```
 
 4. Describe the principles of the generator and discriminator of a GAN. (1P)
+
+    Discriminator D is trained to 
+    discriminate between real and fake 
+    examples
+
+    After an update to Generat𝑜𝑟 𝐺, 
+    gradient of 𝐷 has guided 𝐺(𝑧) to flow 
+    to regions that are more likely to be 
+    classified as (real) data
+
 5. In Denoising Diffusion models, what does the network predict? (1P)
+
+    instead of learning the data distribution, model a series of noise 
+    distributions in a Markov Chain and “decodes” the data by 
+    undoing/denoising the data in a hierarchical way
+
+    the noise 𝜖 added at timestep 𝑡 is 
+    predicted by the network 
+
+
 6. Name and describe the two processes of Denoising Diffusion Models. (1P)
+
+    • Forward diffusion process that gradually adds noise to input
+
+    • Reverse denoising process that learns to generate data by denoising
 
 Total: 10 points
 
