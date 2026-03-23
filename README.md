@@ -1,58 +1,54 @@
-# Computer Graphics
-Here you can find all important information about the lecture and exercise of the course _Computer Graphics_.
+# Computer Graphics Lab
 
-## Lecture
-###  Content
-An introduction to interactive computer graphics under WebGL is given with the help of the following book:
+A collection of 12 hands-on exercises implementing core computer graphics concepts using **WebGL 2** and **GLSL**, completed as part of the Computer Graphics course at the University of Konstanz (WS 2023/24).
 
-> Edward Angel, Dave Shreiner: Interactive Computer Graphics – a top down approach with WebGL
+## Topics Covered
 
-Chapters 1-9 and parts of 10-12 will be covered.
-You will learn the way from the input data (geometric descriptions of the objects) to the pixel of the output image:
-* Data preprocessing (transformation, projection, clipping).
-* Rasterization (scanline methods, depth buffer)
-* Shading methods (Gouraud shading, Phong shading)
-* Local vs. global illumination methods
-* Ray tracing, radiosity and image-based rendering.
-* Texturing.
+| Exercise | Topic |
+|----------|-------|
+| 01 | WebGL setup, vertex/fragment shaders, colored triangle |
+| 02 | Sampling, aliasing, and anti-aliasing theory |
+| 03 | Jittering, Moire patterns, 2D transformations |
+| 04 | Geometric transformations, matrix math |
+| 05 | 3D transformations, homogeneous coordinates |
+| 06 | Projection matrices (orthographic & perspective) |
+| 07 | Lighting models — flat, Gouraud, and Phong shading |
+| 08 | Gouraud shading implementation in vertex shader |
+| 09 | Phong vs Blinn-Phong reflection models |
+| 10 | Color spaces — CMY, HSV, RGB |
+| 11 | Ray tracing fundamentals |
+| 12 | Neural networks as activation functions in graphics |
 
-The book is also available in the library as an electronic book:  https://ebookcentral.proquest.com/lib/uni-konstanz/detail.action?docID=5832653
+## Tech Stack
 
-### Prerequisite
-Knowledge of `JavaScript` or knowledge of another object-oriented programming language and a willingness to learn `JavaScript`. The programming languages used are `JavaScript` and `GLSL` (_OpenGL Shading Language_). 
+- **WebGL 2** — GPU-accelerated rendering in the browser
+- **GLSL (OpenGL Shading Language)** — vertex and fragment shaders
+- **JavaScript** — scene setup, buffer management, math utilities
+- **HTML5 Canvas**
 
-It is necessary to have a computer that can run __at least__ a current browser with _WebGL 2_ and an IDE.
+## How to Run
 
+Start a local server in the project root:
 
+```bash
+python3 -m http.server 8080
+```
 
-### Slides
-The lecture and turorial slides are available at after login:
-https://www.cgmi.uni-konstanz.de/lehre/wintersemester-23-24/computer-graphics-conventional-and-neural-methods/
+Then open any exercise in your browser, e.g.:
 
-## Exercise
+```
+http://localhost:8080/01/src/01.html
+http://localhost:8080/06/src/06.html
+http://localhost:8080/07/src/07.html
+```
 
-### Content
-In the exercise, you will reprogram the contents learned in the lecture. For this purpose, you will be given partially pre-programmed tasks in our JavaScript framework, in which you will mainly write OpenGL code to complete them. Some tasks require work in JavaScript.
+> A local server is required (not `file://`) due to browser CORS restrictions when loading external resources.
 
+## Course
 
-### Dates
-Lecture: Thursdays 15:15 - 16:45
+**Computer Graphics** — University of Konstanz, Winter Semester 2023/24
+Based on: *Interactive Computer Graphics – A Top-Down Approach with WebGL* by Edward Angel & Dave Shreiner
 
-Exercise group 1: Mondays 11:45 - 13:15
+## License
 
-Exercise group 2: Mondays 15:15 - 16:45
-
-
-### Handing in the exercises
-Exercises will be distributed and handed in via the university's Gitlab. You can log in with your university account. The submission of exercise sheets is described in more detail on the website, where you can see the text after logging in. New exercise sheets are always uploaded after the exercise. These must then be worked on and uploaded by the next exercise.
-
-### How to submit your solution:
-
-* Fork this repository once per group
-* Add your group partner as maintainer
-* Add patrick.paetzold and michael.stroh as maintainers in Gitlab
-
-
-## Questions?
-
-Please write us an email: [Patrick Paetzold](mailto:patrick.paetzold@uni-konstanz.de) or [Michael Stroh](mailto:michael.stroh@uni-konstanz.de)
+[MIT](LICENSE)
